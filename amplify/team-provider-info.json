@@ -17,6 +17,9 @@
       },
       "api": {
         "app10": {}
+      },
+      "storage": {
+        "preferences": {}
       }
     }
   }
