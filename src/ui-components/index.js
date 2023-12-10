@@ -6,10 +6,10 @@
 
 export { default as NoteCard } from "./NoteCard";
 export { default as NoteCardCollection } from "./NoteCardCollection";
-export { default as NoteCreateForm } from "./NoteCreateForm";
 export { default as NoteNavBar } from "./NoteNavBar";
 export { default as NoteNavBar2 } from "./NoteNavBar2";
-export { default as NoteUpdateForm } from "./NoteUpdateForm";
+export { default as PrefCreateForm } from "./PrefCreateForm";
+export { default as PrefUpdateForm } from "./PrefUpdateForm";
 export { default as UIEditNote } from "./UIEditNote";
 export { default as UINewNote } from "./UINewNote";
 export { default as studioTheme } from "./studioTheme";

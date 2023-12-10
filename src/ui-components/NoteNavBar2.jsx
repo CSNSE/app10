@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function NoteNavBar2(props) {
-  const { overrides, ...rest } = props;
+  const { pref, overrides, ...rest } = props;
   const vectorOnClick = useNavigateAction({ type: "url", url: "/new" });
   return (
     <View

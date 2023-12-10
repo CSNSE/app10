@@ -31,7 +31,7 @@ export declare type NoteCardOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type NoteCardProps = React.PropsWithChildren<Partial<FlexProps> & {
-    note?: any;
+    pref?: any;
 } & {
     overrides?: NoteCardOverridesProps | undefined | null;
 }>;

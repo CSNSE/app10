@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "./utils";
 import { Button, Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function NoteCard(props) {
-  const { note, overrides, ...rest } = props;
+  const { pref, overrides, ...rest } = props;
   return (
     <Flex
       gap="16px"
@@ -104,7 +104,7 @@ export default function NoteCard(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={note?.name}
+            children={pref?.name}
             {...getOverrideProps(overrides, "Keto")}
           ></Text>
         </Flex>
@@ -135,7 +135,7 @@ export default function NoteCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={note?.name}
+          children={pref?.type}
           {...getOverrideProps(overrides, "Dietary")}
         ></Text>
         <Text
@@ -156,7 +156,7 @@ export default function NoteCard(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={note?.description}
+          children={pref?.priority}
           {...getOverrideProps(overrides, "High Priority")}
         ></Text>
         <Divider

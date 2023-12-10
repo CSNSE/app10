@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { listNotes } from "../graphql/queries";
+import { listPrefs } from "../graphql/queries";
 import NoteCard from "./NoteCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
@@ -55,10 +55,10 @@ export default function NoteCardCollection(props) {
       }
       const result = (
         await client.graphql({
-          query: listNotes.replaceAll("__typename", ""),
+          query: listPrefs.replaceAll("__typename", ""),
           variables,
         })
-      ).data.listNotes;
+      ).data.listPrefs;
       newCache.push(...result.items);
       newNext = result.nextToken;
     }
@@ -95,7 +95,7 @@ export default function NoteCardCollection(props) {
           }
           return (
             <NoteCard
-              note={item}
+              pref={item}
               key={item.id}
               {...(overrideItems && overrideItems({ item, index }))}
             ></NoteCard>

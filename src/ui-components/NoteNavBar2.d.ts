@@ -25,6 +25,8 @@ export declare type NoteNavBar2OverridesProps = {
     Vector?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type NoteNavBar2Props = React.PropsWithChildren<Partial<ViewProps> & {
+    pref?: any;
+} & {
     overrides?: NoteNavBar2OverridesProps | undefined | null;
 }>;
 export default function NoteNavBar2(props: NoteNavBar2Props): React.ReactElement;

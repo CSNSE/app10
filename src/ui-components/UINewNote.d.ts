@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, DividerProps, FlexProps, IconProps, TextFieldProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, DividerProps, FlexProps, TextFieldProps, TextProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -21,8 +21,6 @@ export declare type UINewNoteOverridesProps = {
     UINewNote?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<FlexProps>;
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
     Edit?: PrimitiveOverrideProps<TextProps>;
     Divider40931521?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;
@@ -33,6 +31,8 @@ export declare type UINewNoteOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type UINewNoteProps = React.PropsWithChildren<Partial<FlexProps> & {
+    note?: any;
+} & {
     overrides?: UINewNoteOverridesProps | undefined | null;
 }>;
 export default function UINewNote(props: UINewNoteProps): React.ReactElement;
