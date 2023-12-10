@@ -6,6 +6,9 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { updatePref } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
 import {
   Button,
@@ -16,8 +19,58 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function UIEditNote(props) {
-  const { overrides, ...rest } = props;
+  const { pref, overrides, ...rest } = props;
+  const [
+    textFieldFourOneZeroEightTwoTwoNineSixValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSixValue,
+  ] = useState("");
+  const [
+    textFieldFourOneZeroEightTwoTwoNineSevenValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSevenValue,
+  ] = useState("");
+  const [
+    textFieldFourOneZeroEightTwoFourFiveZeroValue,
+    setTextFieldFourOneZeroEightTwoFourFiveZeroValue,
+  ] = useState("");
+  const buttonOnClick = async () => {
+    await client.graphql({
+      query: updatePref.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          type: textFieldFourOneZeroEightTwoTwoNineSixValue,
+          name: textFieldFourOneZeroEightTwoTwoNineSevenValue,
+          priority: textFieldFourOneZeroEightTwoFourFiveZeroValue,
+          id: pref?.id,
+        },
+      },
+    });
+  };
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSixValue === "" &&
+      pref !== undefined &&
+      pref?.type !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSixValue(pref?.type);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSevenValue === "" &&
+      pref !== undefined &&
+      pref?.name !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSevenValue(pref?.name);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoFourFiveZeroValue === "" &&
+      pref !== undefined &&
+      pref?.priority !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoFourFiveZeroValue(pref?.priority);
+  }, [pref]);
   return (
     <Flex
       gap="16px"
@@ -112,7 +165,7 @@ export default function UIEditNote(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Edit"
+            children={pref?.id}
             {...getOverrideProps(overrides, "Edit")}
           ></Text>
         </Flex>
@@ -149,6 +202,12 @@ export default function UIEditNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourOneZeroEightTwoTwoNineSixValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoTwoNineSixValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField41082296")}
           ></TextField>
           <TextField
@@ -162,6 +221,12 @@ export default function UIEditNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourOneZeroEightTwoTwoNineSevenValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoTwoNineSevenValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField41082297")}
           ></TextField>
           <TextField
@@ -175,6 +240,12 @@ export default function UIEditNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourOneZeroEightTwoFourFiveZeroValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoFourFiveZeroValue(
+                event.target.value
+              );
+            }}
             {...getOverrideProps(overrides, "TextField41082450")}
           ></TextField>
         </Flex>
@@ -195,6 +266,9 @@ export default function UIEditNote(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
+          onClick={() => {
+            buttonOnClick();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
       </Flex>

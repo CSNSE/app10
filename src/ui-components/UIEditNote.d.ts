@@ -33,6 +33,8 @@ export declare type UIEditNoteOverridesProps = {
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
 export declare type UIEditNoteProps = React.PropsWithChildren<Partial<FlexProps> & {
+    pref?: any;
+} & {
     overrides?: UIEditNoteOverridesProps | undefined | null;
 }>;
 export default function UIEditNote(props: UIEditNoteProps): React.ReactElement;

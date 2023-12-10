@@ -6,10 +6,27 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { generateClient } from "aws-amplify/api";
+import { deletePref } from "../graphql/mutations";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Button, Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function NoteCard(props) {
   const { pref, overrides, ...rest } = props;
+  const vectorOnClick = async () => {
+    await client.graphql({
+      query: deletePref.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          id: pref?.id,
+        },
+      },
+    });
+  };
+  const buttonOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/edit/"}${pref?.id}`,
+  });
   return (
     <Flex
       gap="16px"
@@ -83,6 +100,9 @@ export default function NoteCard(props) {
               bottom="20.83%"
               left="20.83%"
               right="20.83%"
+              onClick={() => {
+                vectorOnClick();
+              }}
               {...getOverrideProps(overrides, "Vector")}
             ></Icon>
           </View>
@@ -176,6 +196,9 @@ export default function NoteCard(props) {
           isDisabled={false}
           variation="primary"
           children="Edit"
+          onClick={() => {
+            buttonOnClick();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
       </Flex>
