@@ -9,7 +9,7 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { updatePref } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps } from "./utils";
 import {
   Button,
   Divider,
@@ -47,7 +47,6 @@ export default function UIEditNote(props) {
       },
     });
   };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   useEffect(() => {
     if (
       textFieldFourOneZeroEightTwoTwoNineSixValue === "" &&
@@ -269,9 +268,6 @@ export default function UIEditNote(props) {
           children="Save"
           onClick={() => {
             buttonOnClick();
-          }}
-          onMouseOut={() => {
-            buttonOnMouseOut();
           }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>

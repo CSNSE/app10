@@ -23,6 +23,7 @@ export default function NoteCard(props) {
       },
     });
   };
+  const vectorOnMouseOut = useNavigateAction({ type: "url", url: "/" });
   const buttonOnClick = useNavigateAction({
     type: "url",
     url: `${"/edit/"}${pref?.id}`,
@@ -102,6 +103,9 @@ export default function NoteCard(props) {
               right="20.83%"
               onClick={() => {
                 vectorOnClick();
+              }}
+              onMouseOut={() => {
+                vectorOnMouseOut();
               }}
               {...getOverrideProps(overrides, "Vector")}
             ></Icon>
