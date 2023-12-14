@@ -7,10 +7,18 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { createPref } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
-import { Button, Divider, Flex, Text, TextField } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Text,
+  TextField,
+  View,
+} from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function UINewNote(props) {
   const { note, overrides, ...rest } = props;
@@ -26,7 +34,11 @@ export default function UINewNote(props) {
     textFieldFourOneZeroEightTwoFourSevenTwoValue,
     setTextFieldFourOneZeroEightTwoFourSevenTwoValue,
   ] = useState("");
-  const buttonOnClick = async () => {
+  const vectorFourOneSixSixOneFiveTwoOneOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
+  const buttonOnMouseDown = async () => {
     await client.graphql({
       query: createPref.replaceAll("__typename", ""),
       variables: {
@@ -38,7 +50,7 @@ export default function UINewNote(props) {
       },
     });
   };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
   return (
     <Flex
       gap="16px"
@@ -48,6 +60,7 @@ export default function UINewNote(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
+      border="1px SOLID rgba(4,125,149,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "UINewNote")}
@@ -79,6 +92,46 @@ export default function UINewNote(props) {
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Edit Profile")}
         >
+          <View
+            width="21px"
+            height="18px"
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            shrink="0"
+            position="relative"
+            padding="0px 0px 0px 0px"
+            {...getOverrideProps(overrides, "Vector41661520")}
+          >
+            <Icon
+              width="21px"
+              height="18px"
+              viewBox={{ minX: 0, minY: 0, width: 21, height: 18 }}
+              paths={[
+                {
+                  d: "M2.01 3.03L9.52 6.25L2 5.25L2.01 3.03L2.01 3.03ZM9.51 11.75L2 14.97L2 12.75L9.51 11.75L9.51 11.75ZM0.00999999 0L0 7L15 9L0 11L0.00999999 18L21 9L0.00999999 0Z",
+                  fill: "rgba(13,26,38,1)",
+                  fillRule: "nonzero",
+                },
+              ]}
+              display="block"
+              gap="unset"
+              alignItems="unset"
+              justifyContent="unset"
+              position="absolute"
+              top="100%"
+              bottom="-100%"
+              left="100%"
+              right="-100%"
+              transformOrigin="top left"
+              transform="rotate(-180deg)"
+              onClick={() => {
+                vectorFourOneSixSixOneFiveTwoOneOnClick();
+              }}
+              {...getOverrideProps(overrides, "Vector41661521")}
+            ></Icon>
+          </View>
           <Text
             fontFamily="Inter"
             fontSize="16px"
@@ -198,11 +251,11 @@ export default function UINewNote(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
-          onClick={() => {
-            buttonOnClick();
+          onMouseDown={() => {
+            buttonOnMouseDown();
           }}
-          onMouseOut={() => {
-            buttonOnMouseOut();
+          onMouseUp={() => {
+            buttonOnMouseUp();
           }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>

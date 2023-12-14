@@ -4,6 +4,7 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as MyIcontype23 } from "./MyIcontype23";
 export { default as NoteCard } from "./NoteCard";
 export { default as NoteCardCollection } from "./NoteCardCollection";
 export { default as NoteNavBar } from "./NoteNavBar";

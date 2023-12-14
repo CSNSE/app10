@@ -21,8 +21,8 @@ export declare type UIEditNoteOverridesProps = {
     UIEditNote?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<FlexProps>;
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
-    Vector?: PrimitiveOverrideProps<IconProps>;
+    Vector41661516?: PrimitiveOverrideProps<ViewProps>;
+    Vector41661517?: PrimitiveOverrideProps<IconProps>;
     Edit?: PrimitiveOverrideProps<TextProps>;
     Divider41082294?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;

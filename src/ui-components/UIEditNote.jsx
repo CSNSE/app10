@@ -7,9 +7,9 @@
 /* eslint-disable */
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
 import { updatePref } from "../graphql/mutations";
-import { getOverrideProps } from "./utils";
 import {
   Button,
   Divider,
@@ -34,7 +34,11 @@ export default function UIEditNote(props) {
     textFieldFourOneZeroEightTwoFourFiveZeroValue,
     setTextFieldFourOneZeroEightTwoFourFiveZeroValue,
   ] = useState("");
-  const buttonOnClick = async () => {
+  const vectorFourOneSixSixOneFiveOneSevenOnClick = useNavigateAction({
+    type: "url",
+    url: "/",
+  });
+  const buttonOnMouseDown = async () => {
     await client.graphql({
       query: updatePref.replaceAll("__typename", ""),
       variables: {
@@ -47,6 +51,7 @@ export default function UIEditNote(props) {
       },
     });
   };
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
   useEffect(() => {
     if (
       textFieldFourOneZeroEightTwoTwoNineSixValue === "" &&
@@ -80,6 +85,7 @@ export default function UIEditNote(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
+      border="1px SOLID rgba(4,125,149,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "UIEditNote")}
@@ -112,25 +118,24 @@ export default function UIEditNote(props) {
           {...getOverrideProps(overrides, "Edit Profile")}
         >
           <View
-            width="24px"
-            height="24px"
+            width="21px"
+            height="18px"
             display="block"
             gap="unset"
             alignItems="unset"
             justifyContent="unset"
-            overflow="hidden"
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Icon")}
+            {...getOverrideProps(overrides, "Vector41661516")}
           >
             <Icon
-              width="14px"
-              height="14px"
-              viewBox={{ minX: 0, minY: 0, width: 14, height: 14 }}
+              width="21px"
+              height="18px"
+              viewBox={{ minX: 0, minY: 0, width: 21, height: 18 }}
               paths={[
                 {
-                  d: "M14 1.41L12.59 0L7 5.59L1.41 0L0 1.41L5.59 7L0 12.59L1.41 14L7 8.41L12.59 14L14 12.59L8.41 7L14 1.41Z",
+                  d: "M2.01 3.03L9.52 6.25L2 5.25L2.01 3.03L2.01 3.03ZM9.51 11.75L2 14.97L2 12.75L9.51 11.75L9.51 11.75ZM0.00999999 0L0 7L15 9L0 11L0.00999999 18L21 9L0.00999999 0Z",
                   fill: "rgba(13,26,38,1)",
                   fillRule: "nonzero",
                 },
@@ -140,11 +145,16 @@ export default function UIEditNote(props) {
               alignItems="unset"
               justifyContent="unset"
               position="absolute"
-              top="20.83%"
-              bottom="20.83%"
-              left="20.83%"
-              right="20.83%"
-              {...getOverrideProps(overrides, "Vector")}
+              top="100%"
+              bottom="-100%"
+              left="100%"
+              right="-100%"
+              transformOrigin="top left"
+              transform="rotate(-180deg)"
+              onClick={() => {
+                vectorFourOneSixSixOneFiveOneSevenOnClick();
+              }}
+              {...getOverrideProps(overrides, "Vector41661517")}
             ></Icon>
           </View>
           <Text
@@ -165,7 +175,7 @@ export default function UIEditNote(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={pref?.id}
+            children="Edit"
             {...getOverrideProps(overrides, "Edit")}
           ></Text>
         </Flex>
@@ -266,8 +276,11 @@ export default function UIEditNote(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
-          onClick={() => {
-            buttonOnClick();
+          onMouseDown={() => {
+            buttonOnMouseDown();
+          }}
+          onMouseUp={() => {
+            buttonOnMouseUp();
           }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>

@@ -21,7 +21,7 @@ export declare type NoteCardOverridesProps = {
     NoteCard?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<FlexProps>;
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Icon?: PrimitiveOverrideProps<ViewProps>;
+    "MyIcon/type23"?: PrimitiveOverrideProps<ViewProps>;
     Vector?: PrimitiveOverrideProps<IconProps>;
     Keto?: PrimitiveOverrideProps<TextProps>;
     Divider41082383?: PrimitiveOverrideProps<DividerProps>;
