@@ -9,7 +9,15 @@ import * as React from "react";
 import { generateClient } from "aws-amplify/api";
 import { deletePref } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
-import { Button, Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
+import {
+  Button,
+  Divider,
+  Flex,
+  Icon,
+  Image,
+  Text,
+  View,
+} from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function NoteCard(props) {
   const { pref, overrides, ...rest } = props;
@@ -163,27 +171,21 @@ export default function NoteCard(props) {
           children={`${"Category: "}${pref?.type}`}
           {...getOverrideProps(overrides, "Dietary")}
         ></Text>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="700"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
+        <Image
           width="unset"
-          height="unset"
+          height="400px"
+          display="block"
           gap="unset"
           alignItems="unset"
+          justifyContent="unset"
           shrink="0"
+          alignSelf="stretch"
           position="relative"
           padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children={`${"Priority: "}${pref?.priority}`}
-          {...getOverrideProps(overrides, "High Priority")}
-        ></Text>
+          objectFit="cover"
+          src={pref?.priority}
+          {...getOverrideProps(overrides, "image")}
+        ></Image>
         <Divider
           width="unset"
           height="1px"

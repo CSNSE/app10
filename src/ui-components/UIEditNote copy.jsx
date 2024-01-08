@@ -6,12 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
-import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import { useEffect, useState } from "react";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { Field } from "@aws-amplify/ui-react/internal";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
-import { createPref } from "../graphql/mutations";
+import { updatePref } from "../graphql/mutations";
 import {
   Button,
   Divider,
@@ -22,37 +20,62 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 const client = generateClient();
-export default function UINewNote(props) {
-  const { note, overrides, ...rest } = props;
+export default function UIEditNote(props) {
+  const { pref, overrides, ...rest } = props;
   const [
-    textFieldFourZeroNineThreeOneFiveTwoSixValue,
-    setTextFieldFourZeroNineThreeOneFiveTwoSixValue,
+    textFieldFourOneZeroEightTwoTwoNineSixValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSixValue,
   ] = useState("");
   const [
-    textFieldFourZeroNineThreeOneFiveTwoSevenValue,
-    setTextFieldFourZeroNineThreeOneFiveTwoSevenValue,
+    textFieldFourOneZeroEightTwoTwoNineSevenValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSevenValue,
   ] = useState("");
   const [
-    imageName,
-    setImageName,
+    textFieldFourOneZeroEightTwoFourFiveZeroValue,
+    setTextFieldFourOneZeroEightTwoFourFiveZeroValue,
   ] = useState("");
-  const vectorFourOneSixSixOneFiveTwoOneOnClick = useNavigateAction({
+  const vectorFourOneSixSixOneFiveOneSevenOnClick = useNavigateAction({
     type: "url",
     url: "/",
   });
   const buttonOnMouseDown = async () => {
     await client.graphql({
-      query: createPref.replaceAll("__typename", ""),
+      query: updatePref.replaceAll("__typename", ""),
       variables: {
         input: {
-          type: textFieldFourZeroNineThreeOneFiveTwoSixValue,
-          name: textFieldFourZeroNineThreeOneFiveTwoSevenValue,
-          priority: imageName,
+          type: textFieldFourOneZeroEightTwoTwoNineSixValue,
+          name: textFieldFourOneZeroEightTwoTwoNineSevenValue,
+          priority: textFieldFourOneZeroEightTwoFourFiveZeroValue,
+          id: pref?.id,
         },
       },
     });
   };
   const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSixValue === "" &&
+      pref !== undefined &&
+      pref?.type !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSixValue(pref?.type);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSevenValue === "" &&
+      pref !== undefined &&
+      pref?.name !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSevenValue(pref?.name);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoFourFiveZeroValue === "" &&
+      pref !== undefined &&
+      pref?.priority !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoFourFiveZeroValue(pref?.priority);
+  }, [pref]);
   return (
     <Flex
       gap="16px"
@@ -65,7 +88,7 @@ export default function UINewNote(props) {
       border="1px SOLID rgba(4,125,149,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
-      {...getOverrideProps(overrides, "UINewNote")}
+      {...getOverrideProps(overrides, "UIEditNote")}
       {...rest}
     >
       <Flex
@@ -104,7 +127,7 @@ export default function UINewNote(props) {
             shrink="0"
             position="relative"
             padding="0px 0px 0px 0px"
-            {...getOverrideProps(overrides, "Vector41661520")}
+            {...getOverrideProps(overrides, "Vector41661516")}
           >
             <Icon
               width="21px"
@@ -129,9 +152,9 @@ export default function UINewNote(props) {
               transformOrigin="top left"
               transform="rotate(-180deg)"
               onClick={() => {
-                vectorFourOneSixSixOneFiveTwoOneOnClick();
+                vectorFourOneSixSixOneFiveOneSevenOnClick();
               }}
-              {...getOverrideProps(overrides, "Vector41661521")}
+              {...getOverrideProps(overrides, "Vector41661517")}
             ></Icon>
           </View>
           <Text
@@ -152,7 +175,7 @@ export default function UINewNote(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Create"
+            children="Edit"
             {...getOverrideProps(overrides, "Edit")}
           ></Text>
         </Flex>
@@ -163,7 +186,7 @@ export default function UINewNote(props) {
           alignSelf="stretch"
           size="small"
           orientation="horizontal"
-          {...getOverrideProps(overrides, "Divider40931521")}
+          {...getOverrideProps(overrides, "Divider41082294")}
         ></Divider>
         <Flex
           gap="16px"
@@ -189,13 +212,13 @@ export default function UINewNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            value={textFieldFourZeroNineThreeOneFiveTwoSixValue}
+            value={textFieldFourOneZeroEightTwoTwoNineSixValue}
             onChange={(event) => {
-              setTextFieldFourZeroNineThreeOneFiveTwoSixValue(
+              setTextFieldFourOneZeroEightTwoTwoNineSixValue(
                 event.target.value
               );
             }}
-            {...getOverrideProps(overrides, "TextField40931526")}
+            {...getOverrideProps(overrides, "TextField41082296")}
           ></TextField>
           <TextField
             width="unset"
@@ -208,35 +231,33 @@ export default function UINewNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            value={textFieldFourZeroNineThreeOneFiveTwoSevenValue}
+            value={textFieldFourOneZeroEightTwoTwoNineSevenValue}
             onChange={(event) => {
-              setTextFieldFourZeroNineThreeOneFiveTwoSevenValue(
+              setTextFieldFourOneZeroEightTwoTwoNineSevenValue(
                 event.target.value
               );
             }}
-            {...getOverrideProps(overrides, "TextField40931527")}
+            {...getOverrideProps(overrides, "TextField41082297")}
           ></TextField>
-          <Field
-
-label={"Image"}
-isRequired={false}
-isReadOnly={false}
->
-<StorageManager
-  onUploadSuccess={({ key }) => {
-    setImageName(
-      key
-    );
-  }}
-  processFile={processFile}
-  accessLevel={"public"}
-  acceptedFileTypes={[]}
-  isResumable={false}
-  showThumbnails={true}
-  maxFileCount={1}
-  {...getOverrideProps(overrides, "image")}
-></StorageManager>
-</Field>
+          <TextField
+            width="unset"
+            height="unset"
+            label="Priority"
+            placeholder="High"
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            value={textFieldFourOneZeroEightTwoFourFiveZeroValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoFourFiveZeroValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField41082450")}
+          ></TextField>
         </Flex>
         <Divider
           width="unset"
@@ -245,7 +266,7 @@ isReadOnly={false}
           alignSelf="stretch"
           size="small"
           orientation="horizontal"
-          {...getOverrideProps(overrides, "Divider40931529")}
+          {...getOverrideProps(overrides, "Divider41082305")}
         ></Divider>
         <Button
           width="unset"

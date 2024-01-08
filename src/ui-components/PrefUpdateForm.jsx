@@ -12,9 +12,9 @@ import { generateClient } from "aws-amplify/api";
 import { getPref } from "../graphql/queries";
 import { updatePref } from "../graphql/mutations";
 const client = generateClient();
-export default function PrefUpdateForm(props) {
+export default function UIEditNote(props) {
   const {
-    id: idProp,
+    idProp,
     pref: prefModelProp,
     onSuccess,
     onError,
@@ -24,6 +24,7 @@ export default function PrefUpdateForm(props) {
     overrides,
     ...rest
   } = props;
+  console.log("thing update got it: " + {idProp});
   const initialValues = {
     type: "",
     name: "",

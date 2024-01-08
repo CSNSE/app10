@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, DividerProps, FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { ButtonProps, DividerProps, FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -26,7 +26,7 @@ export declare type NoteCardOverridesProps = {
     Keto?: PrimitiveOverrideProps<TextProps>;
     Divider41082383?: PrimitiveOverrideProps<DividerProps>;
     Dietary?: PrimitiveOverrideProps<TextProps>;
-    "High Priority"?: PrimitiveOverrideProps<TextProps>;
+    image?: PrimitiveOverrideProps<ImageProps>;
     Divider41082394?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
