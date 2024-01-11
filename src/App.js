@@ -15,7 +15,8 @@ class App extends Component {
         <Route exact path='/tylr' element={<UINewNote/>} />
         <Route exact path='/new' element={<UINewNote/>} />
        <Route exact path='/edit/:cid' element={<EditNote/>} />
-        
+         
+
         
       </Routes>
       </Router>
@@ -25,3 +26,4 @@ class App extends Component {
 }
 
 export default withAuthenticator(App);
+//hello
