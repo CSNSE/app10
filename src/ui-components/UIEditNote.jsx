@@ -386,18 +386,41 @@ isReadOnly={false}
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider41082305")}
         ></Divider>
-       <Button
-            children="Submit"
-            type="submit"
-            variation="primary"
-            isDisabled={
-              !(idProp || prefModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
-            
-            {...getOverrideProps(overrides, "SubmitButton")}
-            
-          ></Button>
+      <Button
+  children="Submit"
+  type="submit"
+  variation="primary"
+  isDisabled={
+    !(idProp || prefModelProp) ||
+    Object.values(errors).some((e) => e?.hasError)
+  }
+  onClick={async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    try {
+      // Perform the form submission
+      await client.graphql({
+        query: updatePref.replaceAll("__typename", ""),
+        variables: {
+          input: {
+            id: prefRecord.id,
+            type: type ?? null,
+            name: name ?? null,
+            priority: priority ?? null,
+          },
+        },
+      });
+
+      // If no error occurred during submission, trigger navigation
+      vectorFourOneSixSixOneFiveOneSevenOnClick();
+    } catch (error) {
+      // Handle submission error
+      console.error('Error submitting form:', error);
+    }
+  }}
+  {...getOverrideProps(overrides, "SubmitButton")}
+></Button>
+
       </Flex>
     </Flex>
     </Grid>
