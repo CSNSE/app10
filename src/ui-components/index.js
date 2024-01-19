@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as HomeNavBar } from "./HomeNavBar";
+export { default as HomePage } from "./HomePage";
 export { default as MyIcontype23 } from "./MyIcontype23";
 export { default as NoteCard } from "./NoteCard";
 export { default as NoteCardCollection } from "./NoteCardCollection";
