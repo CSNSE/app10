@@ -6,10 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useAuth } from "./utils";
 import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function HomePage(props) {
   const { pref, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
   return (
     <Flex
       gap="16px"
@@ -69,7 +70,7 @@ export default function HomePage(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={pref?.email}
+            children={`${"Welcome to YUM "}${authAttributes["email"]}`}
             {...getOverrideProps(overrides, "Welcome to YUM dgalotto2024!")}
           ></Text>
         </Flex>
