@@ -6,10 +6,13 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
+import { getOverrideProps, useAuth } from "./utils";
 import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function HomePage(props) {
   const { pref, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
+  const email = authAttributes["email"];
+const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
   return (
     <Flex
       gap="16px"
@@ -69,7 +72,7 @@ export default function HomePage(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={pref?.email}
+            children={`${"Welcome to YUM "}${username}`}
             {...getOverrideProps(overrides, "Welcome to YUM dgalotto2024!")}
           ></Text>
         </Flex>
@@ -88,28 +91,26 @@ export default function HomePage(props) {
           height="24px"
           {...getOverrideProps(overrides, "Icon")}
         ></View>
-        <Text
-          fontFamily="Inter"
-          fontSize="16px"
-          fontWeight="700"
-          color="rgba(0,0,0,1)"
-          lineHeight="24px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="unset"
-          height="unset"
-          gap="unset"
-          alignItems="unset"
-          position="absolute"
-          top="188px"
-          left="24px"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="User Preferences"
-          {...getOverrideProps(overrides, "User Preferences")}
-        ></Text>
+       <a
+  href="/pref"
+  style={{
+    fontFamily: "Inter",
+    fontSize: "16px",
+    fontWeight: 700,
+    color: "rgba(0,0,0,1)",
+    lineHeight: "24px",
+    textAlign: "left",
+    display: "block",
+    position: "absolute",
+    top: "188px",
+    left: "24px",
+    padding: "0px 0px 0px 0px",
+    textDecoration: "none", // Removes underline (optional)
+  }}
+>
+  User Preferences
+</a>
+
         <Divider
           width="272px"
           height="1px"
