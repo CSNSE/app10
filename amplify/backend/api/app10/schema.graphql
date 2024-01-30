@@ -3,6 +3,7 @@ type Pref @model @auth(rules: [{allow: public}]) {
   type: String
   name: String
   priority: String
-
-}
- 
+  username: String
+  phone: String
+  profPic: String
+} 

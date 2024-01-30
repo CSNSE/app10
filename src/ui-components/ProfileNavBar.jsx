@@ -8,9 +8,10 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
-export default function NoteNavBar2(props) {
+export default function ProfileNavBar(props) {
   const { pref, overrides, ...rest } = props;
-  const vectorOnClick = useNavigateAction({ type: "url", url: "/new" });
+  const imageOnClick = useNavigateAction({ type: "url", url: "/" });
+  const vectorOnClick = useNavigateAction({ type: "url", url: "/editprof" });
   return (
     <View
       width="320px"
@@ -21,7 +22,7 @@ export default function NoteNavBar2(props) {
       justifyContent="unset"
       position="relative"
       padding="0px 0px 0px 0px"
-      {...getOverrideProps(overrides, "NoteNavBar2")}
+      {...getOverrideProps(overrides, "ProfileNavBar")}
       {...rest}
     >
       <Flex
@@ -32,9 +33,9 @@ export default function NoteNavBar2(props) {
         justifyContent="center"
         alignItems="center"
         position="absolute"
-        top="calc(50% - 39px - 0px)"
-        left="0%"
-        right="0%"
+        top="calc(50% - 39px - 1px)"
+        left="-8.75%"
+        right="8.75%"
         padding="24px 0px 24px 0px"
         backgroundColor="rgba(70,45,180,1)"
         {...getOverrideProps(overrides, "NoteNavBa")}
@@ -50,6 +51,10 @@ export default function NoteNavBar2(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           objectFit="cover"
+          src="https://master.d2ls4m7uqru7rh.amplifyapp.com/home2.png"
+          onClick={() => {
+            imageOnClick();
+          }}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Text
@@ -70,8 +75,8 @@ export default function NoteNavBar2(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="PREFERENCES"
-          {...getOverrideProps(overrides, "PREFERENCES")}
+          children="PROFILE"
+          {...getOverrideProps(overrides, "PROFILE")}
         ></Text>
         <Icon
           width="20px"

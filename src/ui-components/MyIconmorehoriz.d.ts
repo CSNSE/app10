@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { IconProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,16 +17,10 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type HomeNavBarOverridesProps = {
-    HomeNavBar?: PrimitiveOverrideProps<ViewProps>;
-    NoteNavBa?: PrimitiveOverrideProps<FlexProps>;
-    "Star 2"?: PrimitiveOverrideProps<IconProps>;
-    YUM?: PrimitiveOverrideProps<TextProps>;
-    "Star 3"?: PrimitiveOverrideProps<IconProps>;
+export declare type MyIconmorehorizOverridesProps = {
+    MyIconmorehoriz?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type HomeNavBarProps = React.PropsWithChildren<Partial<ViewProps> & {
-    pref?: any;
-} & {
-    overrides?: HomeNavBarOverridesProps | undefined | null;
+export declare type MyIconmorehorizProps = React.PropsWithChildren<Partial<IconProps> & {
+    overrides?: MyIconmorehorizOverridesProps | undefined | null;
 }>;
-export default function HomeNavBar(props: HomeNavBarProps): React.ReactElement;
+export default function MyIconmorehoriz(props: MyIconmorehorizProps): React.ReactElement;

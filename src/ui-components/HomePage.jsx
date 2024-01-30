@@ -11,8 +11,6 @@ import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function HomePage(props) {
   const { pref, overrides, ...rest } = props;
   const authAttributes = useAuth().user?.attributes ?? {};
-  const email = authAttributes["email"];
-const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
   return (
     <Flex
       gap="16px"
@@ -22,7 +20,7 @@ const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      border="1px SOLID rgba(4,125,149,1)"
+      border="1px SOLID rgba(70,45,180,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "HomePage")}
@@ -72,7 +70,7 @@ const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={`${"Welcome to YUM "}${username}`}
+            children={`${"Welcome to YUM "}${authAttributes["email"]}`}
             {...getOverrideProps(overrides, "Welcome to YUM dgalotto2024!")}
           ></Text>
         </Flex>
@@ -91,26 +89,28 @@ const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
           height="24px"
           {...getOverrideProps(overrides, "Icon")}
         ></View>
-       <a
-  href="/pref"
-  style={{
-    fontFamily: "Inter",
-    fontSize: "16px",
-    fontWeight: 700,
-    color: "rgba(0,0,0,1)",
-    lineHeight: "24px",
-    textAlign: "left",
-    display: "block",
-    position: "absolute",
-    top: "188px",
-    left: "24px",
-    padding: "0px 0px 0px 0px",
-    textDecoration: "none", // Removes underline (optional)
-  }}
->
-  User Preferences
-</a>
-
+        <Text
+          fontFamily="Inter"
+          fontSize="16px"
+          fontWeight="700"
+          color="rgba(0,0,0,1)"
+          lineHeight="24px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="unset"
+          height="unset"
+          gap="unset"
+          alignItems="unset"
+          position="absolute"
+          top="188px"
+          left="24px"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children="User Preferences"
+          {...getOverrideProps(overrides, "User Preferences")}
+        ></Text>
         <Divider
           width="272px"
           height="1px"
@@ -180,8 +180,8 @@ const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
           left="24px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Interactive Map"
-          {...getOverrideProps(overrides, "Interactive Map")}
+          children="Food Generator"
+          {...getOverrideProps(overrides, "Food Generator")}
         ></Text>
         <Icon
           width="22.08px"

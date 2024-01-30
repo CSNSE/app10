@@ -9,7 +9,7 @@ import * as React from "react";
 import { getOverrideProps } from "./utils";
 import { Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function HomeNavBar(props) {
-  const { overrides, ...rest } = props;
+  const { pref, overrides, ...rest } = props;
   return (
     <View
       width="320px"
@@ -35,7 +35,7 @@ export default function HomeNavBar(props) {
         left="0%"
         right="0%"
         padding="24px 0px 24px 0px"
-        backgroundColor="rgba(4,125,149,1)"
+        backgroundColor="rgba(70,45,180,1)"
         {...getOverrideProps(overrides, "NoteNavBa")}
       >
         <Icon
