@@ -25,11 +25,17 @@ export declare type PrefCreateFormInputValues = {
     type?: string;
     name?: string;
     priority?: string;
+    phone?: string;
+    profPic?: string;
+    username?: string;
 };
 export declare type PrefCreateFormValidationValues = {
     type?: ValidationFunction<string>;
     name?: ValidationFunction<string>;
     priority?: ValidationFunction<string>;
+    phone?: ValidationFunction<string>;
+    profPic?: ValidationFunction<string>;
+    username?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type PrefCreateFormOverridesProps = {
@@ -37,6 +43,9 @@ export declare type PrefCreateFormOverridesProps = {
     type?: PrimitiveOverrideProps<TextFieldProps>;
     name?: PrimitiveOverrideProps<TextFieldProps>;
     priority?: PrimitiveOverrideProps<TextFieldProps>;
+    phone?: PrimitiveOverrideProps<TextFieldProps>;
+    profPic?: PrimitiveOverrideProps<TextFieldProps>;
+    username?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type PrefCreateFormProps = React.PropsWithChildren<{
     overrides?: PrefCreateFormOverridesProps | undefined | null;

@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { updatePref } from "../graphql/mutations";
 import { getOverrideProps } from "./utils";
@@ -48,6 +48,30 @@ export default function EditProfile(props) {
       },
     });
   };
+  useEffect(() => {
+    if (
+      textFieldFourTwoSixSixOneFiveEightNineValue === "" &&
+      pref !== undefined &&
+      pref?.username !== undefined
+    )
+      setTextFieldFourTwoSixSixOneFiveEightNineValue(pref?.username);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourTwoSevenOneOneNineFourNineValue === "" &&
+      pref !== undefined &&
+      pref?.profPic !== undefined
+    )
+      setTextFieldFourTwoSevenOneOneNineFourNineValue(pref?.profPic);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourTwoFourFiveOneSixOneZeroValue === "" &&
+      pref !== undefined &&
+      pref?.phone !== undefined
+    )
+      setTextFieldFourTwoFourFiveOneSixOneZeroValue(pref?.phone);
+  }, [pref]);
   return (
     <Flex
       gap="10px"

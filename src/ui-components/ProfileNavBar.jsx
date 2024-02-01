@@ -10,6 +10,7 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function ProfileNavBar(props) {
   const { pref, overrides, ...rest } = props;
+  const imageOnClick = useNavigateAction({ type: "url", url: "/" });
   const vectorOnClick = useNavigateAction({ type: "url", url: "/editprof" });
   return (
     <View
@@ -51,6 +52,9 @@ export default function ProfileNavBar(props) {
           padding="0px 0px 0px 0px"
           objectFit="cover"
           src="https://master.d2ls4m7uqru7rh.amplifyapp.com/home2.png"
+          onClick={() => {
+            imageOnClick();
+          }}
           {...getOverrideProps(overrides, "image")}
         ></Image>
         <Text

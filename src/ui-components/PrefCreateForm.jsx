@@ -26,21 +26,33 @@ export default function PrefCreateForm(props) {
     type: "",
     name: "",
     priority: "",
+    phone: "",
+    profPic: "",
+    username: "",
   };
   const [type, setType] = React.useState(initialValues.type);
   const [name, setName] = React.useState(initialValues.name);
   const [priority, setPriority] = React.useState(initialValues.priority);
+  const [phone, setPhone] = React.useState(initialValues.phone);
+  const [profPic, setProfPic] = React.useState(initialValues.profPic);
+  const [username, setUsername] = React.useState(initialValues.username);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setType(initialValues.type);
     setName(initialValues.name);
     setPriority(initialValues.priority);
+    setPhone(initialValues.phone);
+    setProfPic(initialValues.profPic);
+    setUsername(initialValues.username);
     setErrors({});
   };
   const validations = {
     type: [],
     name: [],
     priority: [],
+    phone: [],
+    profPic: [],
+    username: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -71,6 +83,9 @@ export default function PrefCreateForm(props) {
           type,
           name,
           priority,
+          phone,
+          profPic,
+          username,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -136,6 +151,9 @@ export default function PrefCreateForm(props) {
               type: value,
               name,
               priority,
+              phone,
+              profPic,
+              username,
             };
             const result = onChange(modelFields);
             value = result?.type ?? value;
@@ -162,6 +180,9 @@ export default function PrefCreateForm(props) {
               type,
               name: value,
               priority,
+              phone,
+              profPic,
+              username,
             };
             const result = onChange(modelFields);
             value = result?.name ?? value;
@@ -188,6 +209,9 @@ export default function PrefCreateForm(props) {
               type,
               name,
               priority: value,
+              phone,
+              profPic,
+              username,
             };
             const result = onChange(modelFields);
             value = result?.priority ?? value;
@@ -201,6 +225,93 @@ export default function PrefCreateForm(props) {
         errorMessage={errors.priority?.errorMessage}
         hasError={errors.priority?.hasError}
         {...getOverrideProps(overrides, "priority")}
+      ></TextField>
+      <TextField
+        label="Phone"
+        isRequired={false}
+        isReadOnly={false}
+        value={phone}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              type,
+              name,
+              priority,
+              phone: value,
+              profPic,
+              username,
+            };
+            const result = onChange(modelFields);
+            value = result?.phone ?? value;
+          }
+          if (errors.phone?.hasError) {
+            runValidationTasks("phone", value);
+          }
+          setPhone(value);
+        }}
+        onBlur={() => runValidationTasks("phone", phone)}
+        errorMessage={errors.phone?.errorMessage}
+        hasError={errors.phone?.hasError}
+        {...getOverrideProps(overrides, "phone")}
+      ></TextField>
+      <TextField
+        label="Prof pic"
+        isRequired={false}
+        isReadOnly={false}
+        value={profPic}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              type,
+              name,
+              priority,
+              phone,
+              profPic: value,
+              username,
+            };
+            const result = onChange(modelFields);
+            value = result?.profPic ?? value;
+          }
+          if (errors.profPic?.hasError) {
+            runValidationTasks("profPic", value);
+          }
+          setProfPic(value);
+        }}
+        onBlur={() => runValidationTasks("profPic", profPic)}
+        errorMessage={errors.profPic?.errorMessage}
+        hasError={errors.profPic?.hasError}
+        {...getOverrideProps(overrides, "profPic")}
+      ></TextField>
+      <TextField
+        label="Username"
+        isRequired={false}
+        isReadOnly={false}
+        value={username}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              type,
+              name,
+              priority,
+              phone,
+              profPic,
+              username: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.username ?? value;
+          }
+          if (errors.username?.hasError) {
+            runValidationTasks("username", value);
+          }
+          setUsername(value);
+        }}
+        onBlur={() => runValidationTasks("username", username)}
+        errorMessage={errors.username?.errorMessage}
+        hasError={errors.username?.hasError}
+        {...getOverrideProps(overrides, "username")}
       ></TextField>
       <Flex
         justifyContent="space-between"
