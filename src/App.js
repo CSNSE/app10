@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import { withAuthenticator } from '@aws-amplify/ui-react';
-import {NoteNavBar2, UINewNote, NoteCardCollection, HomeNavBar, HomePage} from "./ui-components";
+import {NoteNavBar2, UINewNote, NoteCardCollection, HomeNavBar, HomePage, Profile, EditProfile, ProfileNavBar} from "./ui-components";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EditNote from './EditNote';
 class App extends Component {
@@ -14,7 +14,10 @@ class App extends Component {
       <Route exact path='/' element={<div><HomeNavBar/><HomePage/></div>}/>
         <Route exact path='/pref' element={<div><NoteNavBar2/><NoteCardCollection/></div>}/>
         <Route exact path='/new' element={<UINewNote/>} />
+        <Route exact path='/prof' element={<div><ProfileNavBar/><Profile/></div>}/>
        <Route exact path='/edit/:cid' element={<EditNote/>} />
+
+       <Route exact path='/editprof' element={<EditProfile/>} />
          
 
         

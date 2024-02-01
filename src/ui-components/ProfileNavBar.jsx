@@ -8,9 +8,9 @@
 import * as React from "react";
 import { getOverrideProps, useNavigateAction } from "./utils";
 import { Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
-export default function NoteNavBar2(props) {
+export default function ProfileNavBar(props) {
   const { pref, overrides, ...rest } = props;
-  const vectorOnClick = useNavigateAction({ type: "url", url: "/new" });
+  const vectorOnClick = useNavigateAction({ type: "url", url: "/editprof" });
   return (
     <View
       width="320px"
@@ -21,7 +21,7 @@ export default function NoteNavBar2(props) {
       justifyContent="unset"
       position="relative"
       padding="0px 0px 0px 0px"
-      {...getOverrideProps(overrides, "NoteNavBar2")}
+      {...getOverrideProps(overrides, "ProfileNavBar")}
       {...rest}
     >
       <Flex
@@ -71,8 +71,8 @@ export default function NoteNavBar2(props) {
           position="relative"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="PREFERENCES"
-          {...getOverrideProps(overrides, "PREFERENCES")}
+          children="PROFILE"
+          {...getOverrideProps(overrides, "PROFILE")}
         ></Text>
         <Icon
           width="20px"

@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { FlexProps, IconProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -17,16 +17,16 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type HomeNavBarOverridesProps = {
-    HomeNavBar?: PrimitiveOverrideProps<ViewProps>;
+export declare type ProfileNavBarOverridesProps = {
+    ProfileNavBar?: PrimitiveOverrideProps<ViewProps>;
     NoteNavBa?: PrimitiveOverrideProps<FlexProps>;
-    "Star 2"?: PrimitiveOverrideProps<IconProps>;
-    YUM?: PrimitiveOverrideProps<TextProps>;
-    "Star 3"?: PrimitiveOverrideProps<IconProps>;
+    image?: PrimitiveOverrideProps<ImageProps>;
+    PROFILE?: PrimitiveOverrideProps<TextProps>;
+    Vector?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
-export declare type HomeNavBarProps = React.PropsWithChildren<Partial<ViewProps> & {
+export declare type ProfileNavBarProps = React.PropsWithChildren<Partial<ViewProps> & {
     pref?: any;
 } & {
-    overrides?: HomeNavBarOverridesProps | undefined | null;
+    overrides?: ProfileNavBarOverridesProps | undefined | null;
 }>;
-export default function HomeNavBar(props: HomeNavBarProps): React.ReactElement;
+export default function ProfileNavBar(props: ProfileNavBarProps): React.ReactElement;
