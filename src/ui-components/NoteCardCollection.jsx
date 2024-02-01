@@ -11,6 +11,7 @@ import NoteCard from "./NoteCard";
 import { getOverrideProps } from "./utils";
 import { Collection, Pagination, Placeholder } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
+import { getUrl } from "@aws-amplify/storage";
 const nextToken = {};
 const apiCache = {};
 const client = generateClient();
@@ -61,6 +62,18 @@ export default function NoteCardCollection(props) {
       ).data.listPrefs;
       newCache.push(...result.items);
       newNext = result.nextToken;
+      const prefFromAPI = result.items
+      await Promise.all(
+        prefFromAPI.map(async (pref) => {
+          if (pref.priority) {
+            const getUrlResult = await getUrl({
+              key: pref.priority,
+            });
+            pref.priority=getUrlResult.url;
+          }
+          return pref;
+          })
+        );
     }
     const cacheSlice = isPaginated
       ? newCache.slice((page - 1) * pageSize, page * pageSize)

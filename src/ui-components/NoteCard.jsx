@@ -45,7 +45,7 @@ export default function NoteCard(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      border="1px SOLID rgba(70,45,180,1)"
+      border="1px SOLID rgba(4,125,149,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "NoteCard")}
@@ -173,7 +173,7 @@ export default function NoteCard(props) {
         ></Text>
         <Image
           width="unset"
-          height="140px"
+          height="400px"
           display="block"
           gap="unset"
           alignItems="unset"
