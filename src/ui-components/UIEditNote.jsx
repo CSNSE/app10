@@ -55,7 +55,7 @@ export default function UIEditNote(props) {
     setPriority(cleanValues.priority);
     setErrors({});
   };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/pref" });
   const vectorFourOneSixSixOneFiveOneSevenOnClick = useNavigateAction({
     type: "url",
     url: "/",
