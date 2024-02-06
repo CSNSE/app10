@@ -17,8 +17,11 @@ import {
   View,
 } from "@aws-amplify/ui-react";
 export default function Profile(props) {
-  const { pref, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({ type: "url", url: "/editprof" });
+  const { prof, overrides, ...rest } = props;
+  const buttonOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/editprof/"}${prof?.id}`,
+  });
   return (
     <Flex
       gap="10px"
@@ -59,7 +62,7 @@ export default function Profile(props) {
           borderRadius="160px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src={pref?.profPic}
+          src={prof?.profPic}
           {...getOverrideProps(overrides, "image42451563")}
         ></Image>
         <View
@@ -94,7 +97,7 @@ export default function Profile(props) {
             left="0px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={pref?.username}
+            children={prof?.username}
             {...getOverrideProps(overrides, "David Galotto")}
           ></Text>
         </View>
@@ -117,7 +120,7 @@ export default function Profile(props) {
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Phone Number: "}${pref?.phone}`}
+          children={`${"Phone Number: "}${prof?.phone}`}
           {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
         ></Text>
         <Icon

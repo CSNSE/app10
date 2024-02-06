@@ -23,7 +23,7 @@ export declare type UINewNoteOverridesProps = {
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
     Vector41661520?: PrimitiveOverrideProps<ViewProps>;
     Vector41661521?: PrimitiveOverrideProps<IconProps>;
-    Edit?: PrimitiveOverrideProps<TextProps>;
+    Create?: PrimitiveOverrideProps<TextProps>;
     Divider40931521?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;
     TextField40931526?: PrimitiveOverrideProps<TextFieldProps>;

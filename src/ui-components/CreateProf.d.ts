@@ -17,32 +17,32 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type EditProfileOverridesProps = {
-    EditProfile?: PrimitiveOverrideProps<FlexProps>;
+export declare type CreateProfOverridesProps = {
+    CreateProf?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
-    TextField42711949?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42451610?: PrimitiveOverrideProps<TextFieldProps>;
-    Vector42451597?: PrimitiveOverrideProps<IconProps>;
+    TextField4289168?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4289169?: PrimitiveOverrideProps<TextFieldProps>;
+    Vector4289170?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<FlexProps>;
     placeholder?: PrimitiveOverrideProps<TextProps>;
     "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
     "Group 4"?: PrimitiveOverrideProps<ViewProps>;
-    image4254104?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4254106"?: PrimitiveOverrideProps<TextProps>;
-    Vector4254121?: PrimitiveOverrideProps<IconProps>;
+    image4289178?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce4289179"?: PrimitiveOverrideProps<TextProps>;
+    Vector4289180?: PrimitiveOverrideProps<IconProps>;
     "Group 3"?: PrimitiveOverrideProps<ViewProps>;
-    image4254110?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4254112"?: PrimitiveOverrideProps<TextProps>;
-    Vector4254123?: PrimitiveOverrideProps<IconProps>;
+    image4289183?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce4289184"?: PrimitiveOverrideProps<TextProps>;
+    Vector4289185?: PrimitiveOverrideProps<IconProps>;
     "Rectangle 1"?: PrimitiveOverrideProps<ViewProps>;
     "Add Friends"?: PrimitiveOverrideProps<TextProps>;
-    TextField42661589?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4289188?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
-export declare type EditProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type CreateProfProps = React.PropsWithChildren<Partial<FlexProps> & {
     prof?: any;
 } & {
-    overrides?: EditProfileOverridesProps | undefined | null;
+    overrides?: CreateProfOverridesProps | undefined | null;
 }>;
-export default function EditProfile(props: EditProfileProps): React.ReactElement;
+export default function CreateProf(props: CreateProfProps): React.ReactElement;

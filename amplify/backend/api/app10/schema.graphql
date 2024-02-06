@@ -1,9 +1,14 @@
+type Profile @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  username: String
+  phone: String
+  profPic: String
+}
+
 type Pref @model @auth(rules: [{allow: public}]) {
   id: ID!
   type: String
   name: String
   priority: String
-  username: String
-  phone: String
-  profPic: String
-} 
+}
+ 

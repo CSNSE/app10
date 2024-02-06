@@ -9,13 +9,11 @@ import * as React from "react";
 import { Button, Flex, Grid, TextField } from "@aws-amplify/ui-react";
 import { fetchByPath, getOverrideProps, validateField } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { getPref } from "../graphql/queries";
-import { updatePref } from "../graphql/mutations";
+import { createProfile } from "../graphql/mutations";
 const client = generateClient();
-export default function PrefUpdateForm(props) {
+export default function ProfileCreateForm(props) {
   const {
-    id: idProp,
-    pref: prefModelProp,
+    clearOnSuccess = true,
     onSuccess,
     onError,
     onSubmit,
@@ -25,43 +23,24 @@ export default function PrefUpdateForm(props) {
     ...rest
   } = props;
   const initialValues = {
-    type: "",
-    name: "",
-    priority: "",
+    username: "",
+    phone: "",
+    profPic: "",
   };
-  const [type, setType] = React.useState(initialValues.type);
-  const [name, setName] = React.useState(initialValues.name);
-  const [priority, setPriority] = React.useState(initialValues.priority);
+  const [username, setUsername] = React.useState(initialValues.username);
+  const [phone, setPhone] = React.useState(initialValues.phone);
+  const [profPic, setProfPic] = React.useState(initialValues.profPic);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
-    const cleanValues = prefRecord
-      ? { ...initialValues, ...prefRecord }
-      : initialValues;
-    setType(cleanValues.type);
-    setName(cleanValues.name);
-    setPriority(cleanValues.priority);
+    setUsername(initialValues.username);
+    setPhone(initialValues.phone);
+    setProfPic(initialValues.profPic);
     setErrors({});
   };
-  const [prefRecord, setPrefRecord] = React.useState(prefModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getPref.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getPref
-        : prefModelProp;
-      setPrefRecord(record);
-    };
-    queryData();
-  }, [idProp, prefModelProp]);
-  React.useEffect(resetStateValues, [prefRecord]);
   const validations = {
-    type: [],
-    name: [],
-    priority: [],
+    username: [],
+    phone: [],
+    profPic: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -89,9 +68,9 @@ export default function PrefUpdateForm(props) {
       onSubmit={async (event) => {
         event.preventDefault();
         let modelFields = {
-          type: type ?? null,
-          name: name ?? null,
-          priority: priority ?? null,
+          username,
+          phone,
+          profPic,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -122,16 +101,18 @@ export default function PrefUpdateForm(props) {
             }
           });
           await client.graphql({
-            query: updatePref.replaceAll("__typename", ""),
+            query: createProfile.replaceAll("__typename", ""),
             variables: {
               input: {
-                id: prefRecord.id,
                 ...modelFields,
               },
             },
           });
           if (onSuccess) {
             onSuccess(modelFields);
+          }
+          if (clearOnSuccess) {
+            resetStateValues();
           }
         } catch (err) {
           if (onError) {
@@ -140,100 +121,99 @@ export default function PrefUpdateForm(props) {
           }
         }
       }}
-      {...getOverrideProps(overrides, "PrefUpdateForm")}
+      {...getOverrideProps(overrides, "ProfileCreateForm")}
       {...rest}
     >
       <TextField
-        label="Type"
+        label="Username"
         isRequired={false}
         isReadOnly={false}
-        value={type}
+        value={username}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              type: value,
-              name,
-              priority,
+              username: value,
+              phone,
+              profPic,
             };
             const result = onChange(modelFields);
-            value = result?.type ?? value;
+            value = result?.username ?? value;
           }
-          if (errors.type?.hasError) {
-            runValidationTasks("type", value);
+          if (errors.username?.hasError) {
+            runValidationTasks("username", value);
           }
-          setType(value);
+          setUsername(value);
         }}
-        onBlur={() => runValidationTasks("type", type)}
-        errorMessage={errors.type?.errorMessage}
-        hasError={errors.type?.hasError}
-        {...getOverrideProps(overrides, "type")}
+        onBlur={() => runValidationTasks("username", username)}
+        errorMessage={errors.username?.errorMessage}
+        hasError={errors.username?.hasError}
+        {...getOverrideProps(overrides, "username")}
       ></TextField>
       <TextField
-        label="Name"
+        label="Phone"
         isRequired={false}
         isReadOnly={false}
-        value={name}
+        value={phone}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              type,
-              name: value,
-              priority,
+              username,
+              phone: value,
+              profPic,
             };
             const result = onChange(modelFields);
-            value = result?.name ?? value;
+            value = result?.phone ?? value;
           }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
+          if (errors.phone?.hasError) {
+            runValidationTasks("phone", value);
           }
-          setName(value);
+          setPhone(value);
         }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+        onBlur={() => runValidationTasks("phone", phone)}
+        errorMessage={errors.phone?.errorMessage}
+        hasError={errors.phone?.hasError}
+        {...getOverrideProps(overrides, "phone")}
       ></TextField>
       <TextField
-        label="Priority"
+        label="Prof pic"
         isRequired={false}
         isReadOnly={false}
-        value={priority}
+        value={profPic}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
-              type,
-              name,
-              priority: value,
+              username,
+              phone,
+              profPic: value,
             };
             const result = onChange(modelFields);
-            value = result?.priority ?? value;
+            value = result?.profPic ?? value;
           }
-          if (errors.priority?.hasError) {
-            runValidationTasks("priority", value);
+          if (errors.profPic?.hasError) {
+            runValidationTasks("profPic", value);
           }
-          setPriority(value);
+          setProfPic(value);
         }}
-        onBlur={() => runValidationTasks("priority", priority)}
-        errorMessage={errors.priority?.errorMessage}
-        hasError={errors.priority?.hasError}
-        {...getOverrideProps(overrides, "priority")}
+        onBlur={() => runValidationTasks("profPic", profPic)}
+        errorMessage={errors.profPic?.errorMessage}
+        hasError={errors.profPic?.hasError}
+        {...getOverrideProps(overrides, "profPic")}
       ></TextField>
       <Flex
         justifyContent="space-between"
         {...getOverrideProps(overrides, "CTAFlex")}
       >
         <Button
-          children="Reset"
+          children="Clear"
           type="reset"
           onClick={(event) => {
             event.preventDefault();
             resetStateValues();
           }}
-          isDisabled={!(idProp || prefModelProp)}
-          {...getOverrideProps(overrides, "ResetButton")}
+          {...getOverrideProps(overrides, "ClearButton")}
         ></Button>
         <Flex
           gap="15px"
@@ -243,10 +223,7 @@ export default function PrefUpdateForm(props) {
             children="Submit"
             type="submit"
             variation="primary"
-            isDisabled={
-              !(idProp || prefModelProp) ||
-              Object.values(errors).some((e) => e?.hasError)
-            }
+            isDisabled={Object.values(errors).some((e) => e?.hasError)}
             {...getOverrideProps(overrides, "SubmitButton")}
           ></Button>
         </Flex>

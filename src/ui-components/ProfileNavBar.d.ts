@@ -25,7 +25,7 @@ export declare type ProfileNavBarOverridesProps = {
     Vector?: PrimitiveOverrideProps<IconProps>;
 } & EscapeHatchProps;
 export declare type ProfileNavBarProps = React.PropsWithChildren<Partial<ViewProps> & {
-    pref?: any;
+    prof?: any;
 } & {
     overrides?: ProfileNavBarOverridesProps | undefined | null;
 }>;

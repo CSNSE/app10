@@ -6,8 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { useEffect, useState } from "react";
+import { getOverrideProps, useNavigateAction } from "./utils";
+import { generateClient } from "aws-amplify/api";
+import { updatePref } from "../graphql/mutations";
 import {
-  Grid,
   Button,
   Divider,
   Flex,
@@ -16,151 +19,64 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
-
-import { useNavigateAction, fetchByPath, getOverrideProps, validateField, processFile } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { getPref } from "../graphql/queries";
-import { updatePref } from "../graphql/mutations";
-import { Field } from "@aws-amplify/ui-react/internal";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
 const client = generateClient();
 export default function UIEditNote(props) {
-  const {
-    idProp,
-    pref: prefModelProp,
-    onSuccess,
-    onError,
-    onSubmit,
-    onValidate,
-    onChange,
-    overrides,
-    ...rest
-  } = props;
-  console.log("thing update got it: " + {idProp});
-  const initialValues = {
-    type: "",
-    name: "",
-    priority: "",
-  };
-  const [type, setType] = React.useState(initialValues.type);
-  const [name, setName] = React.useState(initialValues.name);
-  const [priority, setPriority] = React.useState(initialValues.priority);
-  const [errors, setErrors] = React.useState({});
-  const resetStateValues = () => {
-    const cleanValues = prefRecord
-      ? { ...initialValues, ...prefRecord }
-      : initialValues;
-    setType(cleanValues.type);
-    setName(cleanValues.name);
-    setPriority(cleanValues.priority);
-    setErrors({});
-  };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  const { pref, overrides, ...rest } = props;
+  const [
+    textFieldFourOneZeroEightTwoTwoNineSixValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSixValue,
+  ] = useState("");
+  const [
+    textFieldFourOneZeroEightTwoTwoNineSevenValue,
+    setTextFieldFourOneZeroEightTwoTwoNineSevenValue,
+  ] = useState("");
+  const [
+    textFieldFourOneZeroEightTwoFourFiveZeroValue,
+    setTextFieldFourOneZeroEightTwoFourFiveZeroValue,
+  ] = useState("");
   const vectorFourOneSixSixOneFiveOneSevenOnClick = useNavigateAction({
     type: "url",
     url: "/",
   });
-  const [prefRecord, setPrefRecord] = React.useState(prefModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getPref.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getPref
-        : prefModelProp;
-      setPrefRecord(record);
-    };
-    queryData();
-  }, [idProp, prefModelProp]);
-  React.useEffect(resetStateValues, [prefRecord]);
-  const validations = {
-    type: [],
-    name: [],
-    priority: [],
+  const buttonOnMouseDown = async () => {
+    await client.graphql({
+      query: updatePref.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          type: textFieldFourOneZeroEightTwoTwoNineSixValue,
+          name: textFieldFourOneZeroEightTwoTwoNineSevenValue,
+          priority: textFieldFourOneZeroEightTwoFourFiveZeroValue,
+          id: pref?.id,
+        },
+      },
+    });
   };
-  const runValidationTasks = async (
-    fieldName,
-    currentValue,
-    getDisplayValue
-  ) => {
-    const value =
-      currentValue && getDisplayValue
-        ? getDisplayValue(currentValue)
-        : currentValue;
-    let validationResponse = validateField(value, validations[fieldName]);
-    const customValidator = fetchByPath(onValidate, fieldName);
-    if (customValidator) {
-      validationResponse = await customValidator(value, validationResponse);
-    }
-    setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
-    return validationResponse;
-  };
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSixValue === "" &&
+      pref !== undefined &&
+      pref?.type !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSixValue(pref?.type);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoTwoNineSevenValue === "" &&
+      pref !== undefined &&
+      pref?.name !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoTwoNineSevenValue(pref?.name);
+  }, [pref]);
+  useEffect(() => {
+    if (
+      textFieldFourOneZeroEightTwoFourFiveZeroValue === "" &&
+      pref !== undefined &&
+      pref?.priority !== undefined
+    )
+      setTextFieldFourOneZeroEightTwoFourFiveZeroValue(pref?.priority);
+  }, [pref]);
   return (
-    <Grid
-      as="form"
-      rowGap="15px"
-      columnGap="15px"
-      padding="20px"
-      onSubmit={async (event) => {
-        event.preventDefault();
-        let modelFields = {
-          type: type ?? null,
-          name: name ?? null,
-          priority: priority ?? null,
-        };
-        const validationResponses = await Promise.all(
-          Object.keys(validations).reduce((promises, fieldName) => {
-            if (Array.isArray(modelFields[fieldName])) {
-              promises.push(
-                ...modelFields[fieldName].map((item) =>
-                  runValidationTasks(fieldName, item)
-                )
-              );
-              return promises;
-            }
-            promises.push(
-              runValidationTasks(fieldName, modelFields[fieldName])
-            );
-            return promises;
-          }, [])
-        );
-        if (validationResponses.some((r) => r.hasError)) {
-          return;
-        }
-        if (onSubmit) {
-          modelFields = onSubmit(modelFields);
-        }
-        try {
-          Object.entries(modelFields).forEach(([key, value]) => {
-            if (typeof value === "string" && value === "") {
-              modelFields[key] = null;
-            }
-          });
-          await client.graphql({
-            query: updatePref.replaceAll("__typename", ""),
-            variables: {
-              input: {
-                id: prefRecord.id,
-                ...modelFields,
-              },
-            },
-          });
-          if (onSuccess) {
-            onSuccess(modelFields);
-          }
-        } catch (err) {
-          if (onError) {
-            const messages = err.errors.map((e) => e.message).join("\n");
-            onError(modelFields, messages);
-          }
-        }
-      }}
-      {...getOverrideProps(overrides, "PrefUpdateForm")}
-      {...rest}
-    >
     <Flex
       gap="16px"
       direction="column"
@@ -169,7 +85,7 @@ export default function UIEditNote(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      border="1px SOLID rgba(4,125,149,1)"
+      border="1px SOLID rgba(70,45,180,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "UIEditNote")}
@@ -296,29 +212,13 @@ export default function UIEditNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            isRequired={false}
-            isReadOnly={false}
-            value={type}
-            onChange={(e) => {
-              let { value } = e.target;
-              if (onChange) {
-                const modelFields = {
-                  type: value,
-                  name,
-                  priority,
-                };
-                const result = onChange(modelFields);
-                value = result?.type ?? value;
-              }
-              if (errors.type?.hasError) {
-                runValidationTasks("type", value);
-              }
-              setType(value);
+            value={textFieldFourOneZeroEightTwoTwoNineSixValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoTwoNineSixValue(
+                event.target.value
+              );
             }}
-            onBlur={() => runValidationTasks("type", type)}
-            errorMessage={errors.type?.errorMessage}
-            hasError={errors.type?.hasError}
-            {...getOverrideProps(overrides, "type")}
+            {...getOverrideProps(overrides, "TextField41082296")}
           ></TextField>
           <TextField
             width="unset"
@@ -331,51 +231,33 @@ export default function UIEditNote(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
-            isRequired={false}
-        isReadOnly={false}
-        value={name}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              type,
-              name: value,
-              priority,
-            };
-            const result = onChange(modelFields);
-            value = result?.name ?? value;
-          }
-          if (errors.name?.hasError) {
-            runValidationTasks("name", value);
-          }
-          setName(value);
-        }}
-        onBlur={() => runValidationTasks("name", name)}
-        errorMessage={errors.name?.errorMessage}
-        hasError={errors.name?.hasError}
-        {...getOverrideProps(overrides, "name")}
+            value={textFieldFourOneZeroEightTwoTwoNineSevenValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoTwoNineSevenValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField41082297")}
           ></TextField>
-          <Field
-
-label={"Image"}
-isRequired={false}
-isReadOnly={false}
->
-<StorageManager
-  onUploadSuccess={({ key }) => {
-    setPriority(
-      key
-    );
-  }}
-  processFile={processFile}
-  accessLevel={"public"}
-  acceptedFileTypes={[]}
-  isResumable={false}
-  showThumbnails={true}
-  maxFileCount={1}
-  {...getOverrideProps(overrides, "image")}
-></StorageManager>
-</Field>
+          <TextField
+            width="unset"
+            height="unset"
+            label="Priority"
+            placeholder="High"
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            value={textFieldFourOneZeroEightTwoFourFiveZeroValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoFourFiveZeroValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField41082450")}
+          ></TextField>
         </Flex>
         <Divider
           width="unset"
@@ -386,43 +268,23 @@ isReadOnly={false}
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider41082305")}
         ></Divider>
-      <Button
-  children="Submit"
-  type="submit"
-  variation="primary"
-  isDisabled={
-    !(idProp || prefModelProp) ||
-    Object.values(errors).some((e) => e?.hasError)
-  }
-  onClick={async (event) => {
-    event.preventDefault(); // Prevent the default form submission
-
-    try {
-      // Perform the form submission
-      await client.graphql({
-        query: updatePref.replaceAll("__typename", ""),
-        variables: {
-          input: {
-            id: prefRecord.id,
-            type: type ?? null,
-            name: name ?? null,
-            priority: priority ?? null,
-          },
-        },
-      });
-
-      // If no error occurred during submission, trigger navigation
-      vectorFourOneSixSixOneFiveOneSevenOnClick();
-    } catch (error) {
-      // Handle submission error
-      console.error('Error submitting form:', error);
-    }
-  }}
-  {...getOverrideProps(overrides, "SubmitButton")}
-></Button>
-
+        <Button
+          width="unset"
+          height="unset"
+          shrink="0"
+          size="default"
+          isDisabled={false}
+          variation="primary"
+          children="Save"
+          onMouseDown={() => {
+            buttonOnMouseDown();
+          }}
+          onMouseUp={() => {
+            buttonOnMouseUp();
+          }}
+          {...getOverrideProps(overrides, "Button")}
+        ></Button>
       </Flex>
     </Flex>
-    </Grid>
   );
 }

@@ -7,10 +7,8 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
-import { getOverrideProps, useNavigateAction, processFile } from "./utils";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { generateClient } from "aws-amplify/api";
-import { Field } from "@aws-amplify/ui-react/internal";
-import { StorageManager } from "@aws-amplify/ui-react-storage";
 import { createPref } from "../graphql/mutations";
 import {
   Button,
@@ -33,8 +31,8 @@ export default function UINewNote(props) {
     setTextFieldFourZeroNineThreeOneFiveTwoSevenValue,
   ] = useState("");
   const [
-    imageName,
-    setImageName,
+    textFieldFourOneZeroEightTwoFourSevenTwoValue,
+    setTextFieldFourOneZeroEightTwoFourSevenTwoValue,
   ] = useState("");
   const vectorFourOneSixSixOneFiveTwoOneOnClick = useNavigateAction({
     type: "url",
@@ -47,7 +45,7 @@ export default function UINewNote(props) {
         input: {
           type: textFieldFourZeroNineThreeOneFiveTwoSixValue,
           name: textFieldFourZeroNineThreeOneFiveTwoSevenValue,
-          priority: imageName,
+          priority: textFieldFourOneZeroEightTwoFourSevenTwoValue,
         },
       },
     });
@@ -62,7 +60,7 @@ export default function UINewNote(props) {
       justifyContent="flex-start"
       alignItems="flex-start"
       position="relative"
-      border="1px SOLID rgba(4,125,149,1)"
+      border="1px SOLID rgba(70,45,180,1)"
       padding="0px 0px 0px 0px"
       backgroundColor="rgba(255,255,255,1)"
       {...getOverrideProps(overrides, "UINewNote")}
@@ -153,7 +151,7 @@ export default function UINewNote(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="Create"
-            {...getOverrideProps(overrides, "Edit")}
+            {...getOverrideProps(overrides, "Create")}
           ></Text>
         </Flex>
         <Divider
@@ -216,27 +214,25 @@ export default function UINewNote(props) {
             }}
             {...getOverrideProps(overrides, "TextField40931527")}
           ></TextField>
-          <Field
-
-label={"Image"}
-isRequired={false}
-isReadOnly={false}
->
-<StorageManager
-  onUploadSuccess={({ key }) => {
-    setImageName(
-      key
-    );
-  }}
-  processFile={processFile}
-  accessLevel={"public"}
-  acceptedFileTypes={[]}
-  isResumable={false}
-  showThumbnails={true}
-  maxFileCount={1}
-  {...getOverrideProps(overrides, "image")}
-></StorageManager>
-</Field>
+          <TextField
+            width="unset"
+            height="unset"
+            label="Priority"
+            placeholder="Medium"
+            shrink="0"
+            alignSelf="stretch"
+            size="default"
+            isDisabled={false}
+            labelHidden={false}
+            variation="default"
+            value={textFieldFourOneZeroEightTwoFourSevenTwoValue}
+            onChange={(event) => {
+              setTextFieldFourOneZeroEightTwoFourSevenTwoValue(
+                event.target.value
+              );
+            }}
+            {...getOverrideProps(overrides, "TextField41082472")}
+          ></TextField>
         </Flex>
         <Divider
           width="unset"

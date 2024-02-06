@@ -39,7 +39,7 @@ export declare type ProfileOverridesProps = {
     "James Joyce425476"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
-    pref?: any;
+    prof?: any;
 } & {
     overrides?: ProfileOverridesProps | undefined | null;
 }>;
