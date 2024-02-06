@@ -58,7 +58,7 @@ export default function UIEditNote(props) {
   const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/pref" });
   const vectorFourOneSixSixOneFiveOneSevenOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "/pref",
   });
   const [prefRecord, setPrefRecord] = React.useState(prefModelProp);
   React.useEffect(() => {

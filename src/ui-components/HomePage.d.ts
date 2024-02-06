@@ -38,6 +38,7 @@ export declare type HomePageOverridesProps = {
 } & EscapeHatchProps;
 export declare type HomePageProps = React.PropsWithChildren<Partial<FlexProps> & {
     pref?: any;
+    profile?: any;
 } & {
     overrides?: HomePageOverridesProps | undefined | null;
 }>;

@@ -38,7 +38,7 @@ export default function UINewNote(props) {
   ] = useState("");
   const vectorFourOneSixSixOneFiveTwoOneOnClick = useNavigateAction({
     type: "url",
-    url: "/",
+    url: "/pref",
   });
   const buttonOnMouseDown = async () => {
     await client.graphql({
@@ -52,7 +52,7 @@ export default function UINewNote(props) {
       },
     });
   };
-  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/" });
+  const buttonOnMouseUp = useNavigateAction({ type: "url", url: "/pref" });
   return (
     <Flex
       gap="16px"
