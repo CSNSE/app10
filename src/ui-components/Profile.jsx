@@ -131,7 +131,7 @@ export default function Profile(props) {
           borderRadius="160px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src={prof?.profPic}
+          src={profPic}
           {...getOverrideProps(overrides, "image42451563")}
         ></Image>
         <View
@@ -166,7 +166,7 @@ export default function Profile(props) {
             left="0px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={prof?.username}
+            children={username}
             {...getOverrideProps(overrides, "David Galotto")}
           ></Text>
         </View>
@@ -189,7 +189,7 @@ export default function Profile(props) {
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Phone Number: "}${prof?.phone}`}
+          children={`${"Phone Number: "}${phone}`}
           {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
         ></Text>
         <Icon
