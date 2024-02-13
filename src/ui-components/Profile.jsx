@@ -6,6 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -14,83 +15,13 @@ import {
   Image,
   Text,
   View,
-  Grid
 } from "@aws-amplify/ui-react";
-
-import { fetchByPath, getOverrideProps, validateField } from "./utils";
-import { generateClient } from "aws-amplify/api";
-import { getProfile } from "../graphql/queries";
-import { updateProfile } from "../graphql/mutations";
-const client = generateClient();
 export default function Profile(props) {
-  const {
-    id: idProp,
-    profile: profileModelProp,
-    onSuccess,
-    onError,
-    onSubmit,
-    onValidate,
-    onChange,
-    overrides,
-    ...rest
-  } = props;
-  const initialValues = {
-    username: "",
-    phone: "",
-    profPic: "",
-  };
-  const [username, setUsername] = React.useState(initialValues.username);
-  const [phone, setPhone] = React.useState(initialValues.phone);
-  const [profPic, setProfPic] = React.useState(initialValues.profPic);
-  const [errors, setErrors] = React.useState({});
-  const resetStateValues = () => {
-    const cleanValues = profileRecord
-      ? { ...initialValues, ...profileRecord }
-      : initialValues;
-    setUsername(cleanValues.username);
-    setPhone(cleanValues.phone);
-    setProfPic(cleanValues.profPic);
-    setErrors({});
-  };
-  const [profileRecord, setProfileRecord] = React.useState(profileModelProp);
-  React.useEffect(() => {
-    const queryData = async () => {
-      const record = idProp
-        ? (
-            await client.graphql({
-              query: getProfile.replaceAll("__typename", ""),
-              variables: { id: idProp },
-            })
-          )?.data?.getProfile
-        : profileModelProp;
-      setProfileRecord(record);
-    };
-    queryData();
-  }, [idProp, profileModelProp]);
-  React.useEffect(resetStateValues, [profileRecord]);
-  const validations = {
-    username: [],
-    phone: [],
-    profPic: [],
-  };
-  const runValidationTasks = async (
-    fieldName,
-    currentValue,
-    getDisplayValue
-  ) => {
-    const value =
-      currentValue && getDisplayValue
-        ? getDisplayValue(currentValue)
-        : currentValue;
-    let validationResponse = validateField(value, validations[fieldName]);
-    const customValidator = fetchByPath(onValidate, fieldName);
-    if (customValidator) {
-      validationResponse = await customValidator(value, validationResponse);
-    }
-    setErrors((errors) => ({ ...errors, [fieldName]: validationResponse }));
-    return validationResponse;
-  };
-
+  const { prof, overrides, ...rest } = props;
+  const buttonOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/editprof/"}${prof?.id}`,
+  });
   return (
     <Flex
       gap="10px"
@@ -131,7 +62,7 @@ export default function Profile(props) {
           borderRadius="160px"
           padding="0px 0px 0px 0px"
           objectFit="cover"
-          src={profPic}
+          src={prof?.profPic}
           {...getOverrideProps(overrides, "image42451563")}
         ></Image>
         <View
@@ -166,7 +97,7 @@ export default function Profile(props) {
             left="0px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={username}
+            children={prof?.username}
             {...getOverrideProps(overrides, "David Galotto")}
           ></Text>
         </View>
@@ -189,7 +120,7 @@ export default function Profile(props) {
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Phone Number: "}${phone}`}
+          children={`${"Phone Number: "}${prof?.phone}`}
           {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
         ></Text>
         <Icon

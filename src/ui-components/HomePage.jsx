@@ -15,10 +15,7 @@ export default function HomePage(props) {
     type: "url",
     url: "/pref",
   });
-  const userProfileOnClick = useNavigateAction({
-    type: "url",
-    url: `${"/prof/"}${profile?.id}`,
-  });
+  const userProfileOnClick = useNavigateAction({ type: "url", url: "/prof" });
   return (
     <Flex
       gap="16px"

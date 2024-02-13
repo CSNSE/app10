@@ -7,7 +7,6 @@
 /* eslint-disable */
 import * as React from "react";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 import { generateClient } from "aws-amplify/api";
 import { createProfile } from "../graphql/mutations";
 import { getOverrideProps, useNavigateAction } from "./utils";
@@ -23,7 +22,6 @@ import {
 } from "@aws-amplify/ui-react";
 const client = generateClient();
 export default function CreateProf(props) {
-  const navigate = useNavigate();
   const { prof, overrides, ...rest } = props;
   const [
     textFieldFourTwoEightNineOneSixNineValue,
@@ -38,7 +36,7 @@ export default function CreateProf(props) {
     setTextFieldFourTwoEightNineOneEightEightValue,
   ] = useState("");
   const buttonOnMouseDown = async () => {
-    const response = await client.graphql({
+    await client.graphql({
       query: createProfile.replaceAll("__typename", ""),
       variables: {
         input: {
@@ -48,20 +46,8 @@ export default function CreateProf(props) {
         },
       },
     });
-    if (response.data.createProfile.id) {
-      navigate(`/prof/${response.data.createProfile.id}`); // Navigate to the profile page using the ID
-    } else {
-      console.error("Profile creation did not return a valid ID.");
-    }
-  
   };
-
-
-
-  const buttonOnMouseOut = useNavigateAction({
-    type: "url",
-    url: `${"/prof/"}${prof?.id}`,
-  });
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/prof" });
   return (
     <Flex
       gap="10px"
