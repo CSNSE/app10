@@ -9,7 +9,9 @@ import * as React from "react";
 import { useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { createProfile } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { Field } from "@aws-amplify/ui-react/internal";
+import { StorageManager } from "@aws-amplify/ui-react-storage";
+import { getOverrideProps, useNavigateAction, processFile } from "./utils";
 import {
   Button,
   Divider,
@@ -28,8 +30,8 @@ export default function CreateProf(props) {
     setTextFieldFourTwoEightNineOneSixNineValue,
   ] = useState("");
   const [
-    textFieldFourTwoEightNineOneSixEightValue,
-    setTextFieldFourTwoEightNineOneSixEightValue,
+    imageName,
+    setImageName,
   ] = useState("");
   const [
     textFieldFourTwoEightNineOneEightEightValue,
@@ -41,7 +43,7 @@ export default function CreateProf(props) {
       variables: {
         input: {
           username: textFieldFourTwoEightNineOneSixNineValue,
-          profPic: textFieldFourTwoEightNineOneSixEightValue,
+          profPic: imageName,
           phone: textFieldFourTwoEightNineOneEightEightValue,
         },
       },
@@ -77,24 +79,28 @@ export default function CreateProf(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Content")}
       >
-        <TextField
-          width="67px"
-          height="unset"
-          label="Priority"
-          placeholder="High"
-          position="absolute"
-          top="4px"
-          left="0px"
-          size="default"
-          isDisabled={false}
-          labelHidden={false}
-          variation="default"
-          value={textFieldFourTwoEightNineOneSixEightValue}
-          onChange={(event) => {
-            setTextFieldFourTwoEightNineOneSixEightValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField4289168")}
-        ></TextField>
+        
+         <Field
+
+         label={"Image"}
+         isRequired={false}
+         isReadOnly={false}
+         >
+         <StorageManager
+           onUploadSuccess={({ key }) => {
+             setImageName(
+               key
+             );
+           }}
+           processFile={processFile}
+           accessLevel={"public"}
+           acceptedFileTypes={[]}
+           isResumable={false}
+           showThumbnails={true}
+           maxFileCount={1}
+           {...getOverrideProps(overrides, "image")}
+         ></StorageManager>
+         </Field>
         <TextField
           width="272px"
           height="unset"

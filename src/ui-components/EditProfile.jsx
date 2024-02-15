@@ -48,10 +48,7 @@ export default function EditProfile(props) {
       },
     });
   };
-  const buttonOnMouseOut = useNavigateAction({
-    type: "url",
-    url: `${"/prof/"}${prof?.id}`,
-  });
+  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/prof" });
   useEffect(() => {
     if (
       textFieldFourTwoSixSixOneFiveEightNineValue === "" &&
@@ -238,9 +235,9 @@ export default function EditProfile(props) {
           onClick={() => {
             buttonOnClick();
           }}
-          onMouseOut={() => {
-            buttonOnMouseOut();
-          }}
+          // onMouseOut={() => {
+          //   buttonOnMouseOut();
+          // }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         <View
