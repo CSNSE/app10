@@ -23,7 +23,7 @@
     }
   },
   "auth": {
-    "app102adcbf7f": {
+    "app10": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -36,7 +36,9 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "PREFERRED_USERNAME",
+          "PHONE_NUMBER"
         ],
         "socialProviders": [],
         "usernameAttributes": [

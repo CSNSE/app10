@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "app102adcbf7f_identitypool_2adcbf7f",
+    "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "app102adcbf7f",
-    "userPoolName": "app102adcbf7f_userpool_2adcbf7f",
+    "resourceNameTruncated": "app10d3fd037d",
+    "userPoolName": "app10",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -20,28 +20,30 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "email"
+      "email",
+      "preferred_username",
+      "phone_number"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [
-      "email"
-    ],
-    "userpoolClientReadAttributes": [
-      "email"
-    ],
-    "userpoolClientLambdaRole": "app1022adcbf7f_userpoolclient_lambda_role",
+    "userpoolClientWriteAttributes": [],
+    "userpoolClientReadAttributes": [],
+    "userpoolClientLambdaRole": "app10d3fd037d_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "2adcbf7f",
-    "resourceName": "app102adcbf7f",
+    "sharedId": "d3fd037d",
+    "resourceName": "app10",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "serviceName": "Cognito",
     "usernameAttributes": [
       "email"
     ],
+    "useDefault": "manual",
+    "userPoolGroups": false,
     "userPoolGroupList": [],
-    "serviceName": "Cognito",
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "authProviders": [],
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }

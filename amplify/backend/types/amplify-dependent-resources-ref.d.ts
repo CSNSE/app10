@@ -7,9 +7,10 @@ export type AmplifyDependentResourcesAttributes = {
     }
   },
   "auth": {
-    "app102adcbf7f": {
+    "app10": {
       "AppClientID": "string",
       "AppClientIDWeb": "string",
+      "CreatedSNSRole": "string",
       "IdentityPoolId": "string",
       "IdentityPoolName": "string",
       "UserPoolArn": "string",

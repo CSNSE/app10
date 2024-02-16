@@ -13,7 +13,8 @@
     },
     "categories": {
       "auth": {
-        "app102adcbf7f": {}
+        "app102adcbf7f": {},
+        "app10": {}
       },
       "api": {
         "app10": {}

@@ -235,9 +235,9 @@ export default function EditProfile(props) {
           onClick={() => {
             buttonOnClick();
           }}
-          // onMouseOut={() => {
-          //   buttonOnMouseOut();
-          // }}
+          onMouseOut={() => {
+            buttonOnMouseOut();
+          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         <View
