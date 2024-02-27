@@ -5,7 +5,7 @@
  **************************************************************************/
 
 import * as React from "react";
-import { ButtonProps, DividerProps, FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
+import { DividerProps, FlexProps, IconProps, ImageProps, TextProps, ViewProps } from "@aws-amplify/ui-react";
 export declare type EscapeHatchProps = {
     [elementHierarchy: string]: Record<string, unknown>;
 } | null;
@@ -20,9 +20,8 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type ProfileOverridesProps = {
     Profile?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
-    image42451563?: PrimitiveOverrideProps<ImageProps>;
     "Edit Profile"?: PrimitiveOverrideProps<ViewProps>;
-    "David Galotto"?: PrimitiveOverrideProps<TextProps>;
+    "Username: David Galotto"?: PrimitiveOverrideProps<TextProps>;
     "Phone Number: 703-395-0128"?: PrimitiveOverrideProps<TextProps>;
     Vector?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<ViewProps>;
@@ -33,10 +32,10 @@ export declare type ProfileOverridesProps = {
     image425486?: PrimitiveOverrideProps<ImageProps>;
     "James Joyce425488"?: PrimitiveOverrideProps<TextProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
-    Button?: PrimitiveOverrideProps<ButtonProps>;
     "Group 1"?: PrimitiveOverrideProps<ViewProps>;
     image425475?: PrimitiveOverrideProps<ImageProps>;
     "James Joyce425476"?: PrimitiveOverrideProps<TextProps>;
+    "Email: dgalotto2024@communityschoolanples.org"?: PrimitiveOverrideProps<TextProps>;
 } & EscapeHatchProps;
 export declare type ProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
     prof?: any;

@@ -11,8 +11,6 @@ import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 export default function HomePage(props) {
   const { pref, profile, overrides, ...rest } = props;
   const authAttributes = useAuth().user?.attributes ?? {};
-  const email = authAttributes["email"];
-  const username = email ? email.substring(0,email.indexOf("@")) : "Guest";
   const userPreferencesOnClick = useNavigateAction({
     type: "url",
     url: "/pref",
@@ -77,8 +75,10 @@ export default function HomePage(props) {
             position="relative"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={`${"Welcome to YUM "}${username}`}
-            {...getOverrideProps(overrides, "Welcome to YUM dgalotto2024!")}
+            children={`${"Welcome to YUM "}${
+              authAttributes["preferred_username"]
+            }`}
+            {...getOverrideProps(overrides, "Welcome to YUM David Galotto")}
           ></Text>
         </Flex>
         <Divider

@@ -6,22 +6,11 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
-import {
-  Button,
-  Divider,
-  Flex,
-  Icon,
-  Image,
-  Text,
-  View,
-} from "@aws-amplify/ui-react";
+import { getOverrideProps, useAuth } from "./utils";
+import { Divider, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { prof, overrides, ...rest } = props;
-  const buttonOnClick = useNavigateAction({
-    type: "url",
-    url: `${"/editprof/"}${prof?.id}`,
-  });
+  const authAttributes = useAuth().user?.attributes ?? {};
   return (
     <Flex
       gap="10px"
@@ -49,38 +38,22 @@ export default function Profile(props) {
         padding="0px 0px 0px 0px"
         {...getOverrideProps(overrides, "Content")}
       >
-        <Image
-          width="65px"
-          height="65px"
-          display="block"
-          gap="unset"
-          alignItems="unset"
-          justifyContent="unset"
-          position="absolute"
-          top="19px"
-          left="10px"
-          borderRadius="160px"
-          padding="0px 0px 0px 0px"
-          objectFit="cover"
-          src={prof?.profPic}
-          {...getOverrideProps(overrides, "image42451563")}
-        ></Image>
         <View
-          width="86px"
+          width="226px"
           height="34px"
           display="block"
           gap="unset"
           alignItems="unset"
           justifyContent="unset"
           position="absolute"
-          top="35px"
-          left="88px"
+          top="21px"
+          left="57px"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Edit Profile")}
         >
           <Text
             fontFamily="Inter"
-            fontSize="24px"
+            fontSize="20px"
             fontWeight="800"
             color="rgba(13,26,38,1)"
             lineHeight="20px"
@@ -94,11 +67,11 @@ export default function Profile(props) {
             alignItems="unset"
             position="absolute"
             top="7px"
-            left="0px"
+            left="-47px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={prof?.username}
-            {...getOverrideProps(overrides, "David Galotto")}
+            children={`${"Username: "}${authAttributes["preferred_username"]}`}
+            {...getOverrideProps(overrides, "Username: David Galotto")}
           ></Text>
         </View>
         <Text
@@ -116,11 +89,11 @@ export default function Profile(props) {
           gap="unset"
           alignItems="unset"
           position="absolute"
-          top="117px"
+          top="74px"
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Phone Number: "}${prof?.phone}`}
+          children={`${"Phone Number: "}${authAttributes["phone_number"]}`}
           {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
         ></Text>
         <Icon
@@ -271,21 +244,6 @@ export default function Profile(props) {
           orientation="horizontal"
           {...getOverrideProps(overrides, "Divider")}
         ></Divider>
-        <Button
-          width="unset"
-          height="unset"
-          position="absolute"
-          top="354px"
-          left="10px"
-          size="default"
-          isDisabled={false}
-          variation="primary"
-          children="Edit"
-          onClick={() => {
-            buttonOnClick();
-          }}
-          {...getOverrideProps(overrides, "Button")}
-        ></Button>
         <View
           padding="0px 0px 0px 0px"
           width="127px"
@@ -337,6 +295,31 @@ export default function Profile(props) {
             {...getOverrideProps(overrides, "James Joyce425476")}
           ></Text>
         </View>
+        <Text
+          fontFamily="Inter"
+          fontSize="12px"
+          fontWeight="700"
+          color="rgba(0,0,0,1)"
+          lineHeight="18px"
+          textAlign="left"
+          display="block"
+          direction="column"
+          justifyContent="unset"
+          width="302px"
+          height="31px"
+          gap="unset"
+          alignItems="unset"
+          position="absolute"
+          top="120px"
+          left="10px"
+          padding="0px 0px 0px 0px"
+          whiteSpace="pre-wrap"
+          children={`${"Email: "}${authAttributes["email"]}`}
+          {...getOverrideProps(
+            overrides,
+            "Email: dgalotto2024@communityschoolanples.org"
+          )}
+        ></Text>
       </View>
     </Flex>
   );

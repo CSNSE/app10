@@ -21,7 +21,7 @@ export declare type HomePageOverridesProps = {
     HomePage?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    "Welcome to YUM dgalotto2024!"?: PrimitiveOverrideProps<TextProps>;
+    "Welcome to YUM David Galotto"?: PrimitiveOverrideProps<TextProps>;
     Divider419387?: PrimitiveOverrideProps<DividerProps>;
     Icon?: PrimitiveOverrideProps<ViewProps>;
     Vector42711957?: PrimitiveOverrideProps<IconProps>;
