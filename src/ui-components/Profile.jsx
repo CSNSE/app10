@@ -114,7 +114,7 @@ export default function Profile(props) {
           position="absolute"
           top="181px"
           left="10px"
-          {...getOverrideProps(overrides, "Vector")}
+          {...getOverrideProps(overrides, "Vector42451564")}
         ></Icon>
         <View
           width="187px"
@@ -153,22 +153,6 @@ export default function Profile(props) {
             children="Friends"
             {...getOverrideProps(overrides, "placeholder")}
           ></Text>
-          <Icon
-            width="24px"
-            height="24px"
-            display="block"
-            gap="unset"
-            alignItems="unset"
-            justifyContent="unset"
-            overflow="hidden"
-            position="absolute"
-            top="11px"
-            left="145px"
-            padding="0px 0px 0px 0px"
-            type="chevron_down"
-            fontSize="24px"
-            {...getOverrideProps(overrides, "\uD83D\uDD12Icon")}
-          ></Icon>
         </View>
         <Flex
           gap="0"
@@ -238,7 +222,7 @@ export default function Profile(props) {
           width="262px"
           height="46px"
           position="absolute"
-          top="308px"
+          top="347px"
           left="26px"
           size="small"
           orientation="horizontal"
@@ -320,6 +304,71 @@ export default function Profile(props) {
             "Email: dgalotto2024@communityschoolanples.org"
           )}
         ></Text>
+        <a
+  href = "/friends"
+  style={{
+    fontFamily: "Inter",
+    fontSize: "14px",
+    fontWeight: "400",
+    color: "rgba(0,0,0,1)",
+    lineHeight: "21px",
+    textAlign: "left",
+    display: "block",
+    position: "absolute",
+    top: "317px",
+    left: "79px",
+    padding: "0px",
+    textDecoration: "none", // Removes underline from links
+    cursor: "pointer", // Changes cursor to pointer on hover
+  }}
+  {...getOverrideProps(overrides, "SHOW MORE")}
+>
+  SHOW MORE
+</a>
+
+           
+        <View
+          width="39px"
+          height="17px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          overflow="hidden"
+          position="absolute"
+          top="319px"
+          left="167px"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "MyIcon")}
+        >
+          <Icon
+            width="26px"
+            height="11.33px"
+            viewBox={{
+              minX: 0,
+              minY: 0,
+              width: 26.000001907348633,
+              height: 11.333333015441895,
+            }}
+            paths={[
+              {
+                d: "M13 0L10.7088 0.99875L19.7763 4.95833L0 4.95833L0 6.375L19.7763 6.375L10.7088 10.3346L13 11.3333L26 5.66667L13 0Z",
+                fill: "rgba(13,26,38,1)",
+                fillRule: "nonzero",
+              },
+            ]}
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            position="absolute"
+            top="16.67%"
+            bottom="16.67%"
+            left="16.67%"
+            right="16.67%"
+            {...getOverrideProps(overrides, "Vector4312107")}
+          ></Icon>
+        </View>
       </View>
     </Flex>
   );
