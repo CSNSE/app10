@@ -304,7 +304,7 @@ export default function Profile(props) {
             "Email: dgalotto2024@communityschoolanples.org"
           )}
         ></Text>
-        <a
+              <a
   href = "/friends"
   style={{
     fontFamily: "Inter",
@@ -325,9 +325,8 @@ export default function Profile(props) {
 >
   SHOW MORE
 </a>
+<View
 
-           
-        <View
           width="39px"
           height="17px"
           display="block"
