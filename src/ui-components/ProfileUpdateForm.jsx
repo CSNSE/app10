@@ -26,20 +26,20 @@ export default function ProfileUpdateForm(props) {
   } = props;
   const initialValues = {
     username: "",
+    email: "",
     phone: "",
-    profPic: "",
   };
   const [username, setUsername] = React.useState(initialValues.username);
+  const [email, setEmail] = React.useState(initialValues.email);
   const [phone, setPhone] = React.useState(initialValues.phone);
-  const [profPic, setProfPic] = React.useState(initialValues.profPic);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = profileRecord
       ? { ...initialValues, ...profileRecord }
       : initialValues;
     setUsername(cleanValues.username);
+    setEmail(cleanValues.email);
     setPhone(cleanValues.phone);
-    setProfPic(cleanValues.profPic);
     setErrors({});
   };
   const [profileRecord, setProfileRecord] = React.useState(profileModelProp);
@@ -60,8 +60,8 @@ export default function ProfileUpdateForm(props) {
   React.useEffect(resetStateValues, [profileRecord]);
   const validations = {
     username: [],
+    email: [],
     phone: [],
-    profPic: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -90,8 +90,8 @@ export default function ProfileUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           username: username ?? null,
+          email: email ?? null,
           phone: phone ?? null,
-          profPic: profPic ?? null,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -153,8 +153,8 @@ export default function ProfileUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               username: value,
+              email,
               phone,
-              profPic,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -170,6 +170,32 @@ export default function ProfileUpdateForm(props) {
         {...getOverrideProps(overrides, "username")}
       ></TextField>
       <TextField
+        label="Email"
+        isRequired={false}
+        isReadOnly={false}
+        value={email}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              username,
+              email: value,
+              phone,
+            };
+            const result = onChange(modelFields);
+            value = result?.email ?? value;
+          }
+          if (errors.email?.hasError) {
+            runValidationTasks("email", value);
+          }
+          setEmail(value);
+        }}
+        onBlur={() => runValidationTasks("email", email)}
+        errorMessage={errors.email?.errorMessage}
+        hasError={errors.email?.hasError}
+        {...getOverrideProps(overrides, "email")}
+      ></TextField>
+      <TextField
         label="Phone"
         isRequired={false}
         isReadOnly={false}
@@ -179,8 +205,8 @@ export default function ProfileUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               username,
+              email,
               phone: value,
-              profPic,
             };
             const result = onChange(modelFields);
             value = result?.phone ?? value;
@@ -194,32 +220,6 @@ export default function ProfileUpdateForm(props) {
         errorMessage={errors.phone?.errorMessage}
         hasError={errors.phone?.hasError}
         {...getOverrideProps(overrides, "phone")}
-      ></TextField>
-      <TextField
-        label="Prof pic"
-        isRequired={false}
-        isReadOnly={false}
-        value={profPic}
-        onChange={(e) => {
-          let { value } = e.target;
-          if (onChange) {
-            const modelFields = {
-              username,
-              phone,
-              profPic: value,
-            };
-            const result = onChange(modelFields);
-            value = result?.profPic ?? value;
-          }
-          if (errors.profPic?.hasError) {
-            runValidationTasks("profPic", value);
-          }
-          setProfPic(value);
-        }}
-        onBlur={() => runValidationTasks("profPic", profPic)}
-        errorMessage={errors.profPic?.errorMessage}
-        hasError={errors.profPic?.hasError}
-        {...getOverrideProps(overrides, "profPic")}
       ></TextField>
       <Flex
         justifyContent="space-between"
