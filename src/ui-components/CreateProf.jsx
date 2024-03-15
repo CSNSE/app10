@@ -6,10 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useState } from "react";
-import { generateClient } from "aws-amplify/api";
-import { createProfile } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps } from "./utils";
 import {
   Button,
   Divider,
@@ -20,34 +17,8 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
-const client = generateClient();
 export default function CreateProf(props) {
-  const { prof, overrides, ...rest } = props;
-  const [
-    textFieldFourTwoEightNineOneSixNineValue,
-    setTextFieldFourTwoEightNineOneSixNineValue,
-  ] = useState("");
-  const [
-    textFieldFourTwoEightNineOneSixEightValue,
-    setTextFieldFourTwoEightNineOneSixEightValue,
-  ] = useState("");
-  const [
-    textFieldFourTwoEightNineOneEightEightValue,
-    setTextFieldFourTwoEightNineOneEightEightValue,
-  ] = useState("");
-  const buttonOnMouseDown = async () => {
-    await client.graphql({
-      query: createProfile.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          username: textFieldFourTwoEightNineOneSixNineValue,
-          profPic: textFieldFourTwoEightNineOneSixEightValue,
-          phone: textFieldFourTwoEightNineOneEightEightValue,
-        },
-      },
-    });
-  };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/prof" });
+  const { overrides, ...rest } = props;
   return (
     <Flex
       gap="10px"
@@ -89,11 +60,7 @@ export default function CreateProf(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoEightNineOneSixEightValue}
-          onChange={(event) => {
-            setTextFieldFourTwoEightNineOneSixEightValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField4289168")}
+          {...getOverrideProps(overrides, "TextField43031789")}
         ></TextField>
         <TextField
           width="272px"
@@ -107,11 +74,7 @@ export default function CreateProf(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoEightNineOneSixNineValue}
-          onChange={(event) => {
-            setTextFieldFourTwoEightNineOneSixNineValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField4289169")}
+          {...getOverrideProps(overrides, "TextField43031790")}
         ></TextField>
         <Icon
           width="41px"
@@ -131,7 +94,7 @@ export default function CreateProf(props) {
           position="absolute"
           top="263px"
           left="12px"
-          {...getOverrideProps(overrides, "Vector4289170")}
+          {...getOverrideProps(overrides, "Vector43031791")}
         ></Icon>
         <Flex
           gap="10px"
@@ -207,12 +170,6 @@ export default function CreateProf(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
-          onMouseDown={() => {
-            buttonOnMouseDown();
-          }}
-          onMouseOut={() => {
-            buttonOnMouseOut();
-          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         <View
@@ -241,7 +198,7 @@ export default function CreateProf(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            {...getOverrideProps(overrides, "image4289178")}
+            {...getOverrideProps(overrides, "image43031799")}
           ></Image>
           <Text
             fontFamily="Inter"
@@ -263,7 +220,7 @@ export default function CreateProf(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="James Joyce"
-            {...getOverrideProps(overrides, "James Joyce4289179")}
+            {...getOverrideProps(overrides, "James Joyce43031800")}
           ></Text>
           <Icon
             width="14.04px"
@@ -285,7 +242,7 @@ export default function CreateProf(props) {
             bottom="21.88%"
             left="90.68%"
             right="0%"
-            {...getOverrideProps(overrides, "Vector4289180")}
+            {...getOverrideProps(overrides, "Vector43031801")}
           ></Icon>
         </View>
         <View
@@ -314,7 +271,7 @@ export default function CreateProf(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            {...getOverrideProps(overrides, "image4289183")}
+            {...getOverrideProps(overrides, "image43031804")}
           ></Image>
           <Text
             fontFamily="Inter"
@@ -336,7 +293,7 @@ export default function CreateProf(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="James Joyce"
-            {...getOverrideProps(overrides, "James Joyce4289184")}
+            {...getOverrideProps(overrides, "James Joyce43031805")}
           ></Text>
           <Icon
             width="14.04px"
@@ -358,7 +315,7 @@ export default function CreateProf(props) {
             bottom="21.88%"
             left="90.68%"
             right="0%"
-            {...getOverrideProps(overrides, "Vector4289185")}
+            {...getOverrideProps(overrides, "Vector43031806")}
           ></Icon>
         </View>
         <View
@@ -410,11 +367,7 @@ export default function CreateProf(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoEightNineOneEightEightValue}
-          onChange={(event) => {
-            setTextFieldFourTwoEightNineOneEightEightValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField4289188")}
+          {...getOverrideProps(overrides, "TextField43031809")}
         ></TextField>
       </View>
     </Flex>

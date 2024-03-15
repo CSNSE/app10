@@ -20,29 +20,27 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type CreateProfOverridesProps = {
     CreateProf?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
-    TextField4289168?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4289169?: PrimitiveOverrideProps<TextFieldProps>;
-    Vector4289170?: PrimitiveOverrideProps<IconProps>;
+    TextField43031789?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField43031790?: PrimitiveOverrideProps<TextFieldProps>;
+    Vector43031791?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<FlexProps>;
     placeholder?: PrimitiveOverrideProps<TextProps>;
     "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
     "Group 4"?: PrimitiveOverrideProps<ViewProps>;
-    image4289178?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4289179"?: PrimitiveOverrideProps<TextProps>;
-    Vector4289180?: PrimitiveOverrideProps<IconProps>;
+    image43031799?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce43031800"?: PrimitiveOverrideProps<TextProps>;
+    Vector43031801?: PrimitiveOverrideProps<IconProps>;
     "Group 3"?: PrimitiveOverrideProps<ViewProps>;
-    image4289183?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4289184"?: PrimitiveOverrideProps<TextProps>;
-    Vector4289185?: PrimitiveOverrideProps<IconProps>;
+    image43031804?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce43031805"?: PrimitiveOverrideProps<TextProps>;
+    Vector43031806?: PrimitiveOverrideProps<IconProps>;
     "Rectangle 1"?: PrimitiveOverrideProps<ViewProps>;
     "Add Friends"?: PrimitiveOverrideProps<TextProps>;
-    TextField4289188?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField43031809?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type CreateProfProps = React.PropsWithChildren<Partial<FlexProps> & {
-    prof?: any;
-} & {
     overrides?: CreateProfOverridesProps | undefined | null;
 }>;
 export default function CreateProf(props: CreateProfProps): React.ReactElement;

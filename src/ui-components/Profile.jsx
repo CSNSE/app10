@@ -6,11 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useAuth } from "./utils";
+import { getOverrideProps } from "./utils";
 import { Divider, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { prof, overrides, ...rest } = props;
-  const authAttributes = useAuth().user?.attributes ?? {};
   return (
     <Flex
       gap="10px"
@@ -70,7 +69,7 @@ export default function Profile(props) {
             left="-47px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children={`${"Username: "}${authAttributes["preferred_username"]}`}
+            children="Username: "
             {...getOverrideProps(overrides, "Username: David Galotto")}
           ></Text>
         </View>
@@ -93,7 +92,7 @@ export default function Profile(props) {
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Phone Number: "}${authAttributes["phone_number"]}`}
+          children="Phone Number: "
           {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
         ></Text>
         <Icon
@@ -298,7 +297,7 @@ export default function Profile(props) {
           left="10px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children={`${"Email: "}${authAttributes["email"]}`}
+          children="Email: "
           {...getOverrideProps(
             overrides,
             "Email: dgalotto2024@communityschoolanples.org"
@@ -321,11 +320,11 @@ export default function Profile(props) {
     textDecoration: "none", // Removes underline from links
     cursor: "pointer", // Changes cursor to pointer on hover
   }}
-  {...getOverrideProps(overrides, "SHOW MORE")}
+          {...getOverrideProps(overrides, "SHOW MORE")}
 >
   SHOW MORE
 </a>
-<View
+        <View
 
           width="39px"
           height="17px"

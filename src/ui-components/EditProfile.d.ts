@@ -20,29 +20,27 @@ export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes
 export declare type EditProfileOverridesProps = {
     EditProfile?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
-    TextField42711949?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField42451610?: PrimitiveOverrideProps<TextFieldProps>;
-    Vector42451597?: PrimitiveOverrideProps<IconProps>;
+    TextField43031671?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField43031672?: PrimitiveOverrideProps<TextFieldProps>;
+    Vector43031673?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<FlexProps>;
     placeholder?: PrimitiveOverrideProps<TextProps>;
     "\uD83D\uDD12Icon"?: PrimitiveOverrideProps<IconProps>;
     Divider?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
     "Group 4"?: PrimitiveOverrideProps<ViewProps>;
-    image4254104?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4254106"?: PrimitiveOverrideProps<TextProps>;
-    Vector4254121?: PrimitiveOverrideProps<IconProps>;
+    image43031681?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce43031682"?: PrimitiveOverrideProps<TextProps>;
+    Vector43031683?: PrimitiveOverrideProps<IconProps>;
     "Group 3"?: PrimitiveOverrideProps<ViewProps>;
-    image4254110?: PrimitiveOverrideProps<ImageProps>;
-    "James Joyce4254112"?: PrimitiveOverrideProps<TextProps>;
-    Vector4254123?: PrimitiveOverrideProps<IconProps>;
+    image43031686?: PrimitiveOverrideProps<ImageProps>;
+    "James Joyce43031687"?: PrimitiveOverrideProps<TextProps>;
+    Vector43031688?: PrimitiveOverrideProps<IconProps>;
     "Rectangle 1"?: PrimitiveOverrideProps<ViewProps>;
     "Add Friends"?: PrimitiveOverrideProps<TextProps>;
-    TextField42661589?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField43031691?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type EditProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
-    prof?: any;
-} & {
     overrides?: EditProfileOverridesProps | undefined | null;
 }>;
 export default function EditProfile(props: EditProfileProps): React.ReactElement;

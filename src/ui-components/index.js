@@ -4,6 +4,8 @@
  * Any changes to this file will be overwritten when running amplify pull. *
  **************************************************************************/
 
+export { default as CreateProf } from "./CreateProf";
+export { default as EditProfile } from "./EditProfile";
 export { default as FriendsPage } from "./FriendsPage";
 export { default as HomeNavBar } from "./HomeNavBar";
 export { default as HomePage } from "./HomePage";

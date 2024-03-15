@@ -15,7 +15,10 @@ export default function HomePage(props) {
     type: "url",
     url: "/pref",
   });
-  const userProfileOnClick = useNavigateAction({ type: "url", url: "/prof" });
+  const userProfileOnMouseOut = useNavigateAction({
+    type: "url",
+    url: "/prof",
+  });
   return (
     <Flex
       gap="16px"
@@ -199,8 +202,8 @@ export default function HomePage(props) {
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
           children="User Profile"
-          onClick={() => {
-            userProfileOnClick();
+          onMouseOut={() => {
+            userProfileOnMouseOut();
           }}
           {...getOverrideProps(overrides, "User Profile")}
         ></Text>

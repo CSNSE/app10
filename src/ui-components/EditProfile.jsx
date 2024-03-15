@@ -6,10 +6,7 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { useEffect, useState } from "react";
-import { generateClient } from "aws-amplify/api";
-import { updateProfile } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps } from "./utils";
 import {
   Button,
   Divider,
@@ -20,59 +17,8 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
-const client = generateClient();
 export default function EditProfile(props) {
-  const { prof, overrides, ...rest } = props;
-  const [
-    textFieldFourTwoSixSixOneFiveEightNineValue,
-    setTextFieldFourTwoSixSixOneFiveEightNineValue,
-  ] = useState("");
-  const [
-    textFieldFourTwoFourFiveOneSixOneZeroValue,
-    setTextFieldFourTwoFourFiveOneSixOneZeroValue,
-  ] = useState("");
-  const [
-    textFieldFourTwoSevenOneOneNineFourNineValue,
-    setTextFieldFourTwoSevenOneOneNineFourNineValue,
-  ] = useState("");
-  const buttonOnClick = async () => {
-    await client.graphql({
-      query: updateProfile.replaceAll("__typename", ""),
-      variables: {
-        input: {
-          username: textFieldFourTwoSixSixOneFiveEightNineValue,
-          phone: textFieldFourTwoFourFiveOneSixOneZeroValue,
-          profPic: textFieldFourTwoSevenOneOneNineFourNineValue,
-          id: prof?.id,
-        },
-      },
-    });
-  };
-  const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/prof" });
-  useEffect(() => {
-    if (
-      textFieldFourTwoSixSixOneFiveEightNineValue === "" &&
-      prof !== undefined &&
-      prof?.username !== undefined
-    )
-      setTextFieldFourTwoSixSixOneFiveEightNineValue(prof?.username);
-  }, [prof]);
-  useEffect(() => {
-    if (
-      textFieldFourTwoFourFiveOneSixOneZeroValue === "" &&
-      prof !== undefined &&
-      prof?.phone !== undefined
-    )
-      setTextFieldFourTwoFourFiveOneSixOneZeroValue(prof?.phone);
-  }, [prof]);
-  useEffect(() => {
-    if (
-      textFieldFourTwoSevenOneOneNineFourNineValue === "" &&
-      prof !== undefined &&
-      prof?.profPic !== undefined
-    )
-      setTextFieldFourTwoSevenOneOneNineFourNineValue(prof?.profPic);
-  }, [prof]);
+  const { overrides, ...rest } = props;
   return (
     <Flex
       gap="10px"
@@ -114,11 +60,7 @@ export default function EditProfile(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoSevenOneOneNineFourNineValue}
-          onChange={(event) => {
-            setTextFieldFourTwoSevenOneOneNineFourNineValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField42711949")}
+          {...getOverrideProps(overrides, "TextField43031671")}
         ></TextField>
         <TextField
           width="272px"
@@ -132,11 +74,7 @@ export default function EditProfile(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoFourFiveOneSixOneZeroValue}
-          onChange={(event) => {
-            setTextFieldFourTwoFourFiveOneSixOneZeroValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField42451610")}
+          {...getOverrideProps(overrides, "TextField43031672")}
         ></TextField>
         <Icon
           width="41px"
@@ -156,7 +94,7 @@ export default function EditProfile(props) {
           position="absolute"
           top="263px"
           left="12px"
-          {...getOverrideProps(overrides, "Vector42451597")}
+          {...getOverrideProps(overrides, "Vector43031673")}
         ></Icon>
         <Flex
           gap="10px"
@@ -232,12 +170,6 @@ export default function EditProfile(props) {
           isDisabled={false}
           variation="primary"
           children="Save"
-          onClick={() => {
-            buttonOnClick();
-          }}
-          onMouseOut={() => {
-            buttonOnMouseOut();
-          }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
         <View
@@ -266,7 +198,7 @@ export default function EditProfile(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            {...getOverrideProps(overrides, "image4254104")}
+            {...getOverrideProps(overrides, "image43031681")}
           ></Image>
           <Text
             fontFamily="Inter"
@@ -288,7 +220,7 @@ export default function EditProfile(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="James Joyce"
-            {...getOverrideProps(overrides, "James Joyce4254106")}
+            {...getOverrideProps(overrides, "James Joyce43031682")}
           ></Text>
           <Icon
             width="14.04px"
@@ -310,7 +242,7 @@ export default function EditProfile(props) {
             bottom="21.88%"
             left="90.68%"
             right="0%"
-            {...getOverrideProps(overrides, "Vector4254121")}
+            {...getOverrideProps(overrides, "Vector43031683")}
           ></Icon>
         </View>
         <View
@@ -339,7 +271,7 @@ export default function EditProfile(props) {
             borderRadius="160px"
             padding="0px 0px 0px 0px"
             objectFit="cover"
-            {...getOverrideProps(overrides, "image4254110")}
+            {...getOverrideProps(overrides, "image43031686")}
           ></Image>
           <Text
             fontFamily="Inter"
@@ -361,7 +293,7 @@ export default function EditProfile(props) {
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
             children="James Joyce"
-            {...getOverrideProps(overrides, "James Joyce4254112")}
+            {...getOverrideProps(overrides, "James Joyce43031687")}
           ></Text>
           <Icon
             width="14.04px"
@@ -383,7 +315,7 @@ export default function EditProfile(props) {
             bottom="21.88%"
             left="90.68%"
             right="0%"
-            {...getOverrideProps(overrides, "Vector4254123")}
+            {...getOverrideProps(overrides, "Vector43031688")}
           ></Icon>
         </View>
         <View
@@ -435,11 +367,7 @@ export default function EditProfile(props) {
           isDisabled={false}
           labelHidden={false}
           variation="default"
-          value={textFieldFourTwoSixSixOneFiveEightNineValue}
-          onChange={(event) => {
-            setTextFieldFourTwoSixSixOneFiveEightNineValue(event.target.value);
-          }}
-          {...getOverrideProps(overrides, "TextField42661589")}
+          {...getOverrideProps(overrides, "TextField43031691")}
         ></TextField>
       </View>
     </Flex>

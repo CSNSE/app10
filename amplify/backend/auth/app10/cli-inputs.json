@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "app10d3fd037d",
+    "resourceNameTruncated": "app109a93f781",
     "userPoolName": "app10",
     "autoVerifiedAttributes": [
       "email"
@@ -20,18 +20,16 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "email",
-      "preferred_username",
-      "phone_number"
+      "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "app10d3fd037d_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "app109a93f781_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "d3fd037d",
+    "sharedId": "9a93f781",
     "resourceName": "app10",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",
