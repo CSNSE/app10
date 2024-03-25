@@ -45,8 +45,8 @@ export default function Profile(props) {
           alignItems="unset"
           justifyContent="unset"
           position="absolute"
-          top="21px"
-          left="57px"
+          top="13px"
+          left="139px"
           padding="0px 0px 0px 0px"
           {...getOverrideProps(overrides, "Edit Profile")}
         >
@@ -65,36 +65,14 @@ export default function Profile(props) {
             gap="unset"
             alignItems="unset"
             position="absolute"
-            top="7px"
-            left="-47px"
+            top="24px"
+            left="-52px"
             padding="0px 0px 0px 0px"
             whiteSpace="pre-wrap"
-            children="Username: "
-            {...getOverrideProps(overrides, "Username: David Galotto")}
+            children={prof?.username}
+            {...getOverrideProps(overrides, "David Galotto")}
           ></Text>
         </View>
-        <Text
-          fontFamily="Inter"
-          fontSize="14px"
-          fontWeight="700"
-          color="rgba(0,0,0,1)"
-          lineHeight="21px"
-          textAlign="left"
-          display="block"
-          direction="column"
-          justifyContent="unset"
-          width="295px"
-          height="31px"
-          gap="unset"
-          alignItems="unset"
-          position="absolute"
-          top="74px"
-          left="10px"
-          padding="0px 0px 0px 0px"
-          whiteSpace="pre-wrap"
-          children="Phone Number: "
-          {...getOverrideProps(overrides, "Phone Number: 703-395-0128")}
-        ></Text>
         <Icon
           width="41px"
           height="29px"
@@ -293,11 +271,11 @@ export default function Profile(props) {
           gap="unset"
           alignItems="unset"
           position="absolute"
-          top="120px"
-          left="10px"
+          top="107px"
+          left="9px"
           padding="0px 0px 0px 0px"
           whiteSpace="pre-wrap"
-          children="Email: "
+          children={`${"Email: "}${prof?.email}`}
           {...getOverrideProps(
             overrides,
             "Email: dgalotto2024@communityschoolanples.org"
@@ -367,6 +345,22 @@ export default function Profile(props) {
             {...getOverrideProps(overrides, "Vector4312107")}
           ></Icon>
         </View>
+        <Image
+          width="60px"
+          height="60px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          position="absolute"
+          top="17px"
+          left="9px"
+          borderRadius="160px"
+          padding="0px 0px 0px 0px"
+          objectFit="cover"
+          src={prof?.profPic}
+          {...getOverrideProps(overrides, "image4346157")}
+        ></Image>
       </View>
     </Flex>
   );

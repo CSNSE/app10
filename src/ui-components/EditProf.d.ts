@@ -17,24 +17,24 @@ export declare type Variant = {
     overrides: EscapeHatchProps;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
-export declare type CreateProfOverridesProps = {
-    CreateProf?: PrimitiveOverrideProps<FlexProps>;
+export declare type EditProfOverridesProps = {
+    EditProf?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<FlexProps>;
     "Edit Profile"?: PrimitiveOverrideProps<FlexProps>;
-    Vector4346264?: PrimitiveOverrideProps<ViewProps>;
-    Vector4346265?: PrimitiveOverrideProps<IconProps>;
-    Create?: PrimitiveOverrideProps<TextProps>;
-    Divider4346267?: PrimitiveOverrideProps<DividerProps>;
+    Vector4347302?: PrimitiveOverrideProps<ViewProps>;
+    Vector4347303?: PrimitiveOverrideProps<IconProps>;
+    Edit?: PrimitiveOverrideProps<TextProps>;
+    Divider4347305?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;
-    TextField4346269?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4346270?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4346271?: PrimitiveOverrideProps<TextFieldProps>;
-    Divider4346272?: PrimitiveOverrideProps<DividerProps>;
+    TextField4347307?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4347308?: PrimitiveOverrideProps<TextFieldProps>;
+    TextField4347309?: PrimitiveOverrideProps<TextFieldProps>;
+    Divider4347310?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;
 } & EscapeHatchProps;
-export declare type CreateProfProps = React.PropsWithChildren<Partial<FlexProps> & {
+export declare type EditProfProps = React.PropsWithChildren<Partial<FlexProps> & {
     prof?: any;
 } & {
-    overrides?: CreateProfOverridesProps | undefined | null;
+    overrides?: EditProfOverridesProps | undefined | null;
 }>;
-export default function CreateProf(props: CreateProfProps): React.ReactElement;
+export default function EditProf(props: EditProfProps): React.ReactElement;

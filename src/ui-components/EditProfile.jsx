@@ -54,8 +54,8 @@ export default function EditProfile(props) {
           label="Priority"
           placeholder="High"
           position="absolute"
-          top="4px"
-          left="0px"
+          top="6px"
+          left="12px"
           size="default"
           isDisabled={false}
           labelHidden={false}
@@ -65,10 +65,10 @@ export default function EditProfile(props) {
         <TextField
           width="272px"
           height="unset"
-          label="Phone Number"
+          label="Email"
           placeholder="000-000-0000"
           position="absolute"
-          top="115px"
+          top="111px"
           left="12px"
           size="default"
           isDisabled={false}
@@ -361,8 +361,8 @@ export default function EditProfile(props) {
           label="Phone Number"
           placeholder="Username"
           position="absolute"
-          top="32px"
-          left="83px"
+          top="38px"
+          left="93px"
           size="default"
           isDisabled={false}
           labelHidden={false}

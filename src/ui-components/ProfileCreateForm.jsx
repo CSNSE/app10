@@ -25,22 +25,22 @@ export default function ProfileCreateForm(props) {
   const initialValues = {
     username: "",
     email: "",
-    phone: "",
+    profPic: "",
   };
   const [username, setUsername] = React.useState(initialValues.username);
   const [email, setEmail] = React.useState(initialValues.email);
-  const [phone, setPhone] = React.useState(initialValues.phone);
+  const [profPic, setProfPic] = React.useState(initialValues.profPic);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setUsername(initialValues.username);
     setEmail(initialValues.email);
-    setPhone(initialValues.phone);
+    setProfPic(initialValues.profPic);
     setErrors({});
   };
   const validations = {
     username: [],
     email: [],
-    phone: [],
+    profPic: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -70,7 +70,7 @@ export default function ProfileCreateForm(props) {
         let modelFields = {
           username,
           email,
-          phone,
+          profPic,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -135,7 +135,7 @@ export default function ProfileCreateForm(props) {
             const modelFields = {
               username: value,
               email,
-              phone,
+              profPic,
             };
             const result = onChange(modelFields);
             value = result?.username ?? value;
@@ -161,7 +161,7 @@ export default function ProfileCreateForm(props) {
             const modelFields = {
               username,
               email: value,
-              phone,
+              profPic,
             };
             const result = onChange(modelFields);
             value = result?.email ?? value;
@@ -177,30 +177,30 @@ export default function ProfileCreateForm(props) {
         {...getOverrideProps(overrides, "email")}
       ></TextField>
       <TextField
-        label="Phone"
+        label="Prof pic"
         isRequired={false}
         isReadOnly={false}
-        value={phone}
+        value={profPic}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               username,
               email,
-              phone: value,
+              profPic: value,
             };
             const result = onChange(modelFields);
-            value = result?.phone ?? value;
+            value = result?.profPic ?? value;
           }
-          if (errors.phone?.hasError) {
-            runValidationTasks("phone", value);
+          if (errors.profPic?.hasError) {
+            runValidationTasks("profPic", value);
           }
-          setPhone(value);
+          setProfPic(value);
         }}
-        onBlur={() => runValidationTasks("phone", phone)}
-        errorMessage={errors.phone?.errorMessage}
-        hasError={errors.phone?.hasError}
-        {...getOverrideProps(overrides, "phone")}
+        onBlur={() => runValidationTasks("profPic", profPic)}
+        errorMessage={errors.profPic?.errorMessage}
+        hasError={errors.profPic?.hasError}
+        {...getOverrideProps(overrides, "profPic")}
       ></TextField>
       <Flex
         justifyContent="space-between"

@@ -21,8 +21,7 @@ export declare type ProfileOverridesProps = {
     Profile?: PrimitiveOverrideProps<FlexProps>;
     Content?: PrimitiveOverrideProps<ViewProps>;
     "Edit Profile"?: PrimitiveOverrideProps<ViewProps>;
-    "Username: David Galotto"?: PrimitiveOverrideProps<TextProps>;
-    "Phone Number: 703-395-0128"?: PrimitiveOverrideProps<TextProps>;
+    "David Galotto"?: PrimitiveOverrideProps<TextProps>;
     Vector42451564?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<ViewProps>;
     placeholder?: PrimitiveOverrideProps<TextProps>;
@@ -38,6 +37,7 @@ export declare type ProfileOverridesProps = {
     "SHOW MORE"?: PrimitiveOverrideProps<TextProps>;
     MyIcon?: PrimitiveOverrideProps<ViewProps>;
     Vector4312107?: PrimitiveOverrideProps<IconProps>;
+    image4346157?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;
 export declare type ProfileProps = React.PropsWithChildren<Partial<FlexProps> & {
     prof?: any;

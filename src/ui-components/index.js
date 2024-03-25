@@ -5,6 +5,7 @@
  **************************************************************************/
 
 export { default as CreateProf } from "./CreateProf";
+export { default as EditProf } from "./EditProf";
 export { default as EditProfile } from "./EditProfile";
 export { default as FriendsPage } from "./FriendsPage";
 export { default as HomeNavBar } from "./HomeNavBar";

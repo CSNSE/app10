@@ -2,7 +2,7 @@ type Profile @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String
   email: String
-  phone: String
+  profPic: String
 }
 
 type Pref @model @auth(rules: [{allow: public}]) {
