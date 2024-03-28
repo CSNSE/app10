@@ -6,10 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
+import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
 import { useEffect, useState } from "react";
 import { generateClient } from "aws-amplify/api";
 import { updateProfile } from "../graphql/mutations";
-import { getOverrideProps, useNavigateAction } from "./utils";
 import {
   Button,
   Divider,
@@ -22,13 +22,10 @@ import {
 const client = generateClient();
 export default function EditProf(props) {
   const { prof, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
   const [
     textFieldFourThreeFourSevenThreeZeroSevenValue,
     setTextFieldFourThreeFourSevenThreeZeroSevenValue,
-  ] = useState("");
-  const [
-    textFieldFourThreeFourSevenThreeZeroEightValue,
-    setTextFieldFourThreeFourSevenThreeZeroEightValue,
   ] = useState("");
   const [
     textFieldFourThreeFourSevenThreeZeroNineValue,
@@ -40,8 +37,8 @@ export default function EditProf(props) {
       variables: {
         input: {
           username: textFieldFourThreeFourSevenThreeZeroSevenValue,
-          email: textFieldFourThreeFourSevenThreeZeroEightValue,
           profPic: textFieldFourThreeFourSevenThreeZeroNineValue,
+          email: authAttributes["email"],
           id: prof?.id,
         },
       },
@@ -55,14 +52,6 @@ export default function EditProf(props) {
       prof?.username !== undefined
     )
       setTextFieldFourThreeFourSevenThreeZeroSevenValue(prof?.username);
-  }, [prof]);
-  useEffect(() => {
-    if (
-      textFieldFourThreeFourSevenThreeZeroEightValue === "" &&
-      prof !== undefined &&
-      prof?.email !== undefined
-    )
-      setTextFieldFourThreeFourSevenThreeZeroEightValue(prof?.email);
   }, [prof]);
   useEffect(() => {
     if (
@@ -217,25 +206,6 @@ export default function EditProf(props) {
               );
             }}
             {...getOverrideProps(overrides, "TextField4347307")}
-          ></TextField>
-          <TextField
-            width="unset"
-            height="unset"
-            label="Email"
-            placeholder="dgalotto"
-            shrink="0"
-            alignSelf="stretch"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            value={textFieldFourThreeFourSevenThreeZeroEightValue}
-            onChange={(event) => {
-              setTextFieldFourThreeFourSevenThreeZeroEightValue(
-                event.target.value
-              );
-            }}
-            {...getOverrideProps(overrides, "TextField4347308")}
           ></TextField>
           <TextField
             width="unset"

@@ -7,6 +7,7 @@
 /* eslint-disable */
 import * as React from "react";
 import { getOverrideProps } from "./utils";
+
 import { Divider, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { prof, overrides, ...rest } = props;

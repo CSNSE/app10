@@ -6,19 +6,49 @@
 
 /* eslint-disable */
 import * as React from "react";
+
+import { useNavigate } from 'react-router-dom';
 import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
 import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
+import { generateClient } from "aws-amplify/api";
+import{getProfile} from "../graphql/queries";
 export default function HomePage(props) {
   const { pref, profile, overrides, ...rest } = props;
+  const client = generateClient();
   const authAttributes = useAuth().user?.attributes ?? {};
+  const email = authAttributes["email"];
+  
   const userPreferencesOnClick = useNavigateAction({
     type: "url",
     url: "/pref",
   });
-  const userProfileOnClick = useNavigateAction({
-    type: "url",
-    url: "/createprof",
-  });
+
+const navigat = useNavigate();
+const userProfileOnClick = async () => {
+
+  const userEmail = email; // Replace with actual method to get user's email from Cognito
+  const navigate=navigat;
+  // Define your profile query and mutation as before
+
+  try {
+    const profileResponse = await client.graphql({
+      query: getProfile,
+      variables: { email: userEmail },
+    });
+
+    if (profileResponse.data.getProfileByEmail) {
+      // If profile exists, perform your existing GraphQL mutation
+    } else {
+      // If no profile found, redirect to /createprof
+    
+      console.log("Hello");
+    }
+  } catch (error) {
+    navigate('/createprof');
+  }
+  
+};
+
   return (
     <Flex
       gap="16px"

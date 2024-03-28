@@ -27,7 +27,6 @@ export declare type CreateProfOverridesProps = {
     Divider4346267?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;
     TextField4346269?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4346270?: PrimitiveOverrideProps<TextFieldProps>;
     TextField4346271?: PrimitiveOverrideProps<TextFieldProps>;
     Divider4346272?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;

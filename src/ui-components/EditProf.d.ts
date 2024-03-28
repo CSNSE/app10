@@ -27,7 +27,6 @@ export declare type EditProfOverridesProps = {
     Divider4347305?: PrimitiveOverrideProps<DividerProps>;
     Forms?: PrimitiveOverrideProps<FlexProps>;
     TextField4347307?: PrimitiveOverrideProps<TextFieldProps>;
-    TextField4347308?: PrimitiveOverrideProps<TextFieldProps>;
     TextField4347309?: PrimitiveOverrideProps<TextFieldProps>;
     Divider4347310?: PrimitiveOverrideProps<DividerProps>;
     Button?: PrimitiveOverrideProps<ButtonProps>;

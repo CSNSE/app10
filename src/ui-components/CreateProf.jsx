@@ -6,7 +6,10 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps, useNavigateAction } from "./utils";
+import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
+import { useState } from "react";
+import { generateClient } from "aws-amplify/api";
+import { createProfile } from "../graphql/mutations";
 import {
   Button,
   Divider,
@@ -16,9 +19,31 @@ import {
   TextField,
   View,
 } from "@aws-amplify/ui-react";
+const client = generateClient();
 export default function CreateProf(props) {
   const { prof, overrides, ...rest } = props;
+  const authAttributes = useAuth().user?.attributes ?? {};
+  const [
+    textFieldFourThreeFourSixTwoSixNineValue,
+    setTextFieldFourThreeFourSixTwoSixNineValue,
+  ] = useState("");
+  const [
+    textFieldFourThreeFourSixTwoSevenOneValue,
+    setTextFieldFourThreeFourSixTwoSevenOneValue,
+  ] = useState("");
   const buttonOnMouseOut = useNavigateAction({ type: "url", url: "/prof" });
+  const buttonOnMouseDown = async () => {
+    await client.graphql({
+      query: createProfile.replaceAll("__typename", ""),
+      variables: {
+        input: {
+          username: textFieldFourThreeFourSixTwoSixNineValue,
+          email: authAttributes["email"],
+          profPic: textFieldFourThreeFourSixTwoSevenOneValue,
+        },
+      },
+    });
+  };
   return (
     <Flex
       gap="16px"
@@ -152,20 +177,11 @@ export default function CreateProf(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourThreeFourSixTwoSixNineValue}
+            onChange={(event) => {
+              setTextFieldFourThreeFourSixTwoSixNineValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField4346269")}
-          ></TextField>
-          <TextField
-            width="unset"
-            height="unset"
-            label="Email"
-            placeholder="dgalotto"
-            shrink="0"
-            alignSelf="stretch"
-            size="default"
-            isDisabled={false}
-            labelHidden={false}
-            variation="default"
-            {...getOverrideProps(overrides, "TextField4346270")}
           ></TextField>
           <TextField
             width="unset"
@@ -178,6 +194,10 @@ export default function CreateProf(props) {
             isDisabled={false}
             labelHidden={false}
             variation="default"
+            value={textFieldFourThreeFourSixTwoSevenOneValue}
+            onChange={(event) => {
+              setTextFieldFourThreeFourSixTwoSevenOneValue(event.target.value);
+            }}
             {...getOverrideProps(overrides, "TextField4346271")}
           ></TextField>
         </Flex>
@@ -200,6 +220,9 @@ export default function CreateProf(props) {
           children="Save"
           onMouseOut={() => {
             buttonOnMouseOut();
+          }}
+          onMouseDown={() => {
+            buttonOnMouseDown();
           }}
           {...getOverrideProps(overrides, "Button")}
         ></Button>
