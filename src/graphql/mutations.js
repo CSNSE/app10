@@ -10,7 +10,7 @@ export const createProfile = /* GraphQL */ `
       id
       username
       email
-      phone
+      profPic
       createdAt
       updatedAt
       __typename
@@ -26,7 +26,7 @@ export const updateProfile = /* GraphQL */ `
       id
       username
       email
-      phone
+      profPic
       createdAt
       updatedAt
       __typename
@@ -42,7 +42,7 @@ export const deleteProfile = /* GraphQL */ `
       id
       username
       email
-      phone
+      profPic
       createdAt
       updatedAt
       __typename

@@ -38,8 +38,8 @@ export default function CreateProf(props) {
       variables: {
         input: {
           username: textFieldFourThreeFourSixTwoSixNineValue,
-          email: authAttributes["email"],
           profPic: textFieldFourThreeFourSixTwoSevenOneValue,
+          email: authAttributes["email"],
         },
       },
     });
