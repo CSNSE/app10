@@ -7,13 +7,15 @@ export const getProfile = /* GraphQL */ `
       id
       username
       email
-      phone
+      profPic
       createdAt
       updatedAt
       __typename
     }
   }
 `;
+
+
 export const listProfiles = /* GraphQL */ `
   query ListProfiles(
     $filter: ModelProfileFilterInput
@@ -25,7 +27,7 @@ export const listProfiles = /* GraphQL */ `
         id
         username
         email
-        phone
+        profPic
         createdAt
         updatedAt
         __typename
