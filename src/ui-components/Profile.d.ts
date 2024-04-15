@@ -22,6 +22,8 @@ export declare type ProfileOverridesProps = {
     Content?: PrimitiveOverrideProps<ViewProps>;
     "Edit Profile"?: PrimitiveOverrideProps<ViewProps>;
     "David Galotto"?: PrimitiveOverrideProps<TextProps>;
+    MyIcon4355115?: PrimitiveOverrideProps<ViewProps>;
+    Vector4355116?: PrimitiveOverrideProps<IconProps>;
     Vector42451564?: PrimitiveOverrideProps<IconProps>;
     Input?: PrimitiveOverrideProps<ViewProps>;
     placeholder?: PrimitiveOverrideProps<TextProps>;
@@ -35,7 +37,7 @@ export declare type ProfileOverridesProps = {
     "James Joyce425476"?: PrimitiveOverrideProps<TextProps>;
     "Email: dgalotto2024@communityschoolanples.org"?: PrimitiveOverrideProps<TextProps>;
     "SHOW MORE"?: PrimitiveOverrideProps<TextProps>;
-    MyIcon?: PrimitiveOverrideProps<ViewProps>;
+    MyIcon4312106?: PrimitiveOverrideProps<ViewProps>;
     Vector4312107?: PrimitiveOverrideProps<IconProps>;
     image4346157?: PrimitiveOverrideProps<ImageProps>;
 } & EscapeHatchProps;

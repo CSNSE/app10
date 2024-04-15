@@ -6,11 +6,14 @@
 
 /* eslint-disable */
 import * as React from "react";
-import { getOverrideProps } from "./utils";
-
+import { getOverrideProps, useNavigateAction } from "./utils";
 import { Divider, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { prof, overrides, ...rest } = props;
+  const vectorFourThreeFiveFiveOneOneSixOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/editprof/"}${prof?.id}`,
+  });
   return (
     <Flex
       gap="10px"
@@ -73,6 +76,51 @@ export default function Profile(props) {
             children={prof?.username}
             {...getOverrideProps(overrides, "David Galotto")}
           ></Text>
+        </View>
+        <View
+          width="24px"
+          height="24px"
+          display="block"
+          gap="unset"
+          alignItems="unset"
+          justifyContent="unset"
+          overflow="hidden"
+          position="absolute"
+          top="32px"
+          left="271px"
+          padding="0px 0px 0px 0px"
+          {...getOverrideProps(overrides, "MyIcon4355115")}
+        >
+          <Icon
+            width="18px"
+            height="18px"
+            viewBox={{
+              minX: 0,
+              minY: 0,
+              width: 18.002443313598633,
+              height: 18.002443313598633,
+            }}
+            paths={[
+              {
+                d: "M0 14.2524L0 18.0024L3.75 18.0024L14.81 6.94244L11.06 3.19244L0 14.2524ZM17.71 2.63244L15.37 0.292444C15.2775 0.19974 15.1676 0.126193 15.0466 0.0760114C14.9257 0.02583 14.796 4.44089e-16 14.665 0C14.534 0 14.4043 0.02583 14.2834 0.0760114C14.1624 0.126193 14.0525 0.19974 13.96 0.292444L12.13 2.12244L15.88 5.87244L17.71 4.04244C17.8027 3.94993 17.8762 3.84004 17.9264 3.71907C17.9766 3.59809 18.0024 3.46841 18.0024 3.33744C18.0024 3.20648 17.9766 3.07679 17.9264 2.95582C17.8762 2.83485 17.8027 2.72496 17.71 2.63244L17.71 2.63244Z",
+                fill: "rgba(0,0,0,1)",
+                fillRule: "nonzero",
+              },
+            ]}
+            display="block"
+            gap="unset"
+            alignItems="unset"
+            justifyContent="unset"
+            position="absolute"
+            top="12.49%"
+            bottom="12.5%"
+            left="12.5%"
+            right="12.49%"
+            onClick={() => {
+              vectorFourThreeFiveFiveOneOneSixOnClick();
+            }}
+            {...getOverrideProps(overrides, "Vector4355116")}
+          ></Icon>
         </View>
         <Icon
           width="41px"
@@ -304,7 +352,6 @@ export default function Profile(props) {
   SHOW MORE
 </a>
         <View
-
           width="39px"
           height="17px"
           display="block"
@@ -316,7 +363,7 @@ export default function Profile(props) {
           top="319px"
           left="167px"
           padding="0px 0px 0px 0px"
-          {...getOverrideProps(overrides, "MyIcon")}
+          {...getOverrideProps(overrides, "MyIcon4312106")}
         >
           <Icon
             width="26px"

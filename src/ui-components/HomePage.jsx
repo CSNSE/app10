@@ -17,6 +17,7 @@ export default function HomePage(props) {
   const client = generateClient();
   const authAttributes = useAuth().user?.attributes ?? {};
   const email = authAttributes["email"];
+  var i = 0;
   
   const userPreferencesOnClick = useNavigateAction({
     type: "url",
@@ -25,7 +26,7 @@ export default function HomePage(props) {
 
 const navigat = useNavigate();
 const userProfileOnClick = async () => {
-  var i = 0;
+console.log("here " + i);
 
   // const userEmail = email; // Replace with actual method to get user's email from Cognito
   const navigate=navigat;
@@ -38,13 +39,16 @@ const userProfileOnClick = async () => {
 //     });
    
 // console.log("hello" + profileResponse.data.getProfile);
-    if (profileResponse.data.getProfile) {
+    if (i > 0) {
       navigate('/prof')
       // If profile exists, perform your existing GraphQL mutation
     } else {
       // If no profile found, redirect to /createprof
-      navigate('/createprof');
       i++;
+      navigate('/createprof');
+      console.log("there " + i)
+
+   
     }
 //  } catch (error) {console.log("error email " + userEmail);
 //     console.error('Error:', error);
