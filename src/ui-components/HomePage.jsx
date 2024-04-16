@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { getOverrideProps, useAuth, useNavigateAction } from "./utils";
 import { Divider, Flex, Icon, Text, View } from "@aws-amplify/ui-react";
 import { generateClient } from "aws-amplify/api";
-import{getProfile} from "../graphql/queries";
+import{listProfiles} from "../graphql/queries";
 export default function HomePage(props) {
   const { pref, profile, overrides, ...rest } = props;
   const client = generateClient();
@@ -24,37 +24,41 @@ export default function HomePage(props) {
     url: "/pref",
   });
 
-const navigat = useNavigate();
-const userProfileOnClick = async () => {
-console.log("here " + i);
 
-  // const userEmail = email; // Replace with actual method to get user's email from Cognito
-  const navigate=navigat;
-  // Define your profile query and mutation as before
-
-//   try {
-//     const profileResponse = await client.graphql({
-//       query: getProfile,
-//       variables: { email: userEmail },
-//     });
+  const navigat = useNavigate();
+  const userProfileOnClick = async () => {
+    var i = 0;
+ 
+    const userEmail = email; // Replace with actual method to get user's email from Cognito
+    
+    const navigate=navigat;
+    // Define your profile query and mutation as before
+ 
+    try {
+      const profileResponse = await client.graphql({
+        query: listProfiles,
+        variables: { limit: 1 },
+      });
+ 
+ 
+  // console.log("hello" + profileResponse.data.getProfile);
+      if (profileResponse.data && profileResponse.data.listProfiles.items.length > 0) {
+        navigate('/prof')
+        // If profile exists, perform your existing GraphQL mutation
+      } else {
+        // If no profile found, redirect to /createprof
+ 
+        console.log("Hello");
+        navigate('/createprof');
+        i++;
+      }
    
-// console.log("hello" + profileResponse.data.getProfile);
-    if (i > 0) {
-      navigate('/prof')
-      // If profile exists, perform your existing GraphQL mutation
-    } else {
-      // If no profile found, redirect to /createprof
-      i++;
-      navigate('/createprof');
-      console.log("there " + i)
-
-   
+ 
+   } catch (error) {console.log("error email " + userEmail);
+      console.error('Error:', error);
     }
-//  } catch (error) {console.log("error email " + userEmail);
-//     console.error('Error:', error);
-//   }
-   
-};
+     
+  };
 
   return (
     <Flex
