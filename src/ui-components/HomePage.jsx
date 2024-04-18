@@ -43,6 +43,7 @@ export default function HomePage(props) {
  
   // console.log("hello" + profileResponse.data.getProfile);
       if (profileResponse.data && profileResponse.data.listProfiles.items.length > 0) {
+        console.log(profileResponse.data);
         navigate('/prof')
         // If profile exists, perform your existing GraphQL mutation
       } else {
