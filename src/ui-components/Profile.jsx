@@ -10,6 +10,10 @@ import { getOverrideProps, useNavigateAction } from "./utils";
 import { Divider, Flex, Icon, Image, Text, View } from "@aws-amplify/ui-react";
 export default function Profile(props) {
   const { prof, overrides, ...rest } = props;
+  const myIconFourThreeFiveFiveOneOneFiveOnClick = useNavigateAction({
+    type: "url",
+    url: `${"/editprof/"}${prof?.id}`,
+  });
   const vectorFourThreeFiveFiveOneOneSixOnClick = useNavigateAction({
     type: "url",
     url: `${"/editprof/"}${prof?.id}`,
@@ -89,6 +93,9 @@ export default function Profile(props) {
           top="32px"
           left="271px"
           padding="0px 0px 0px 0px"
+          onClick={() => {
+            myIconFourThreeFiveFiveOneOneFiveOnClick();
+          }}
           {...getOverrideProps(overrides, "MyIcon4355115")}
         >
           <Icon

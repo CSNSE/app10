@@ -14,7 +14,7 @@ import { updateProfile } from "../graphql/mutations";
 const client = generateClient();
 export default function ProfileUpdateForm(props) {
   const {
-    id: idProp,
+    idProp,
     profile: profileModelProp,
     onSuccess,
     onError,
@@ -24,6 +24,7 @@ export default function ProfileUpdateForm(props) {
     overrides,
     ...rest
   } = props;
+  console.log("got it " + idProp);
   const initialValues = {
     username: "",
     email: "",

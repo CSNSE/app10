@@ -1,10 +1,10 @@
-
-import { EditProfile, ProfileUpdateForm} from "./ui-components";
+import React, { Component } from 'react'
+import {EditProf, ProfileUpdateForm} from "./ui-components";
 import {useParams } from "react-router-dom";
 import "./App.css";
 
 
-function EditProfileR() {
+function EditProfile() {
   return <Put />;
 }
 
@@ -12,13 +12,14 @@ function EditProfileR() {
     const { cid } = useParams();
     console.log("found " +(cid));
     return (
-     
-        <EditProfile idProp= {cid}/>
-       
+      <div><header className="App-header">
+      
+        <ProfileUpdateForm idProp= {cid}/>
+        </header></div>
       );
     }
 
-export default EditProfileR
+export default EditProfile
 // import React, { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';
 // import { NoteNavBar2, UIEditNote } from './ui-components';
